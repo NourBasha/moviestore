@@ -1,3 +1,67 @@
+.header .navbar {
+  padding: 5px 5px 3px 5px;
+}
+.header .navbar .navbar-brand {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.header .navbar .top-pages {
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.header .navbar .top-pages a {
+  font-weight: bold;
+  color: rgba(212, 0, 255, 0.726);
+  padding: 10px;
+  text-decoration: none;
+}
+.header .navbar .top-pages a.router-link-exact-active {
+  color: #42b983;
+  background-color: rgba(107, 107, 107, 0.096);
+  border-radius: 40%;
+  border: 2px solid rgba(212, 0, 255, 0.363);
+}
+.header .navbar ul {
+  position: absolute;
+  top: 5;
+  left: 45%;
+}
+@media (max-width: 567px) {
+  .header .navbar ul {
+    left: 40%;
+  }
+}
+.header .navbar #brand-logo {
+  color: rgba(212, 0, 255, 0.726);
+  font-size: 30px;
+}
+.header .navbar #brand-logo span {
+  font-size: 20px;
+  color: #42b983;
+}
+.header .navbar .search-input {
+  border: 2px solid #42b983;
+  box-shadow: #42b983;
+}
+.header .navbar .search-form button {
+  border: 1px solid rgba(212, 0, 255, 0.726);
+  color: rgba(212, 0, 255, 0.726);
+}
 
+.home {
+  margin-bottom: 50px;
+}
+.home .carousel-item {
+  background: no-repeat center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+body {
+  background-color: #5c5c5c;
+}
 
 /*# sourceMappingURL=main.css.map */

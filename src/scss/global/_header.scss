@@ -1,0 +1,65 @@
+$color-main: rgba(212, 0, 255, 0.726);
+$color-main-soft: rgba(212, 0, 255, 0.363);
+$colo-secondary: #42b983;
+$color-dark: rgba(107, 107, 107, 0.096);
+
+.header {
+    .navbar {
+        padding: 5px 5px 3px 5px;
+        .navbar-brand {
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+          .top-pages {
+            display: flex;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            a {
+              font-weight: bold;
+              color: $color-main;
+              padding: 10px;
+              text-decoration: none;
+              &.router-link-exact-active {
+                color: $colo-secondary;
+                background-color: $color-dark;
+                border-radius: 40%;
+                border: 2px solid $color-main-soft;
+              }
+            }
+          }
+        
+          ul {
+            position: absolute;
+            top: 5;
+            left: 45%;
+          }
+
+          @media (max-width:567px) {
+            ul {
+              
+                left: 40%;
+              }
+          }
+
+          #brand-logo {
+            color: $color-main;
+            font-size: 30px;
+            span {
+              font-size: 20px;
+              color: $colo-secondary;
+            }
+          }
+        
+          .search-input {
+            border: 2px solid $colo-secondary;
+            box-shadow: $colo-secondary;
+          }
+          .search-form {
+            button {
+              border: 1px solid$color-main;
+              color: $color-main;
+            }
+          }
+    }
+ 
+}
