@@ -1,7 +1,13 @@
 @import './global/header';
 @import './home/home';
 
+$color-main: rgba(212, 0, 255, 0.726);
+$color-main-soft: rgba(212, 0, 255, 0.363);
+$colo-secondary: #42b983;
+$color-dark: #343a40;
+$color-card:#21262c;
+
 
 body {
-    background-color: rgb(92, 92, 92);
+    background-color:  rgb(255, 255, 255); 
 }

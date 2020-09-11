@@ -18,7 +18,7 @@
 }
 .header .navbar .top-pages a.router-link-exact-active {
   color: #42b983;
-  background-color: rgba(107, 107, 107, 0.096);
+  background-color: #343a40;
   border-radius: 40%;
   border: 2px solid rgba(212, 0, 255, 0.363);
 }
@@ -49,9 +49,6 @@
   color: rgba(212, 0, 255, 0.726);
 }
 
-.home {
-  margin-bottom: 50px;
-}
 .home .carousel-item {
   background: no-repeat center center;
   background-size: cover;
@@ -59,9 +56,30 @@
   -moz-background-size: cover;
   -o-background-size: cover;
 }
+.home .carousel-indicators li {
+  height: 8px;
+  cursor: pointer;
+}
+.home .latest {
+  background-color: #343a40;
+  padding: 50px 0 150px 0;
+}
+.home .latest .latest-h2 {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  background-color: #21262c;
+}
+.home .latest .latest-p {
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 30px;
+  color: white;
+}
 
 body {
-  background-color: #5c5c5c;
+  background-color: white;
 }
 
 /*# sourceMappingURL=main.css.map */
