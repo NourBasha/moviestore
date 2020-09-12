@@ -6,9 +6,9 @@ $color-card:#21262c;
 
 
   .home {
-
+background-color: $color-dark;
     #carousel-id {
-        // margin-bottom: 50px;
+         margin-bottom: 50px;
     }
     .carousel-item {
       background: no-repeat center center;
@@ -23,29 +23,172 @@ $color-card:#21262c;
       cursor: pointer;
     }
     
+// start of latest 
 
     
 .latest {
-    background-color: $color-dark;
-   // margin-bottom: 50px;
-    padding: 50px 0 150px 0 ;
-  
-      .latest-h2 {
-        font-size: 40px;
-        font-weight: bold;
-        font-family:'Times New Roman', Times, serif;
-        color: white;
+  background-color: $color-dark;
+ // margin-bottom: 50px;
+  padding: 0 0 50px 0 ;
+
+    .latest-h2 {
+      font-size: 40px;
+      font-weight: bold;
+      font-family:'Times New Roman', Times, serif;
+      color: $colo-secondary;
 background-color: #21262c;      }
-      .latest-p{
-        font-size: 25px;
-        font-family:'Times New Roman', Times, serif;
-        margin-bottom: 30px;
-        color:white;
+    .latest-p{
+      font-size: 25px;
+      font-family:'Times New Roman', Times, serif;
+      margin-bottom: 30px;
+      color:$colo-secondary;
+    }
+
+
+      // .next-a {
+      //   &:hover{
+      //     background-color:#85abd1a1;
+
+      //  }
+        .next {
+          position: absolute;
+          top: 50px ;
+          right: 20px;
+         // background-color:$color-main;
+          border-radius: 4px;
+          padding: 1px 5px;
+          color: $colo-secondary;
+          text-align: center;
+          font-weight: bold;
+          height: 500px;
+          cursor: pointer;
+          &:hover{
+            background-color:#85abd14b;
+  
+         }
+          }
+            .prev {
+          position: absolute;
+           top: 50px;
+          left: 20px;
+         // background-color: $color-main;
+          border-radius: 4px;
+          padding: 1px 5px;
+          color: $colo-secondary;
+          text-align: center;
+          font-weight: bold;
+          height: 500px;
+          cursor: pointer;
+          &:hover{
+            background-color:#85abd14b;
+  
+         }
+            
+          }
+
+          @media (max-width: 768px) {
+          
+            .indicators{
+              display: none;
+            }
+
+          }
+
+
+}
+
+// end of latest 
+
+// start of groups 
+
+.groups {
+
+   
+  h4 {
+   margin-left: -15px;
+   margin-right: -15px;
+   margin-bottom: 25px;
+   padding: 10px 0 ;
+   font-size: 30px;
+   font-weight: bold;
+   font-family:'Times New Roman', Times, serif;
+   color: $colo-secondary;
+   background-color: #21262c;   
+   
+   }
+
+   .first-category-row{
+     margin-bottom: 20px;
+   }
+}
+
+
+// end of groups 
+  
+
+// check categories
+
+
+
+.check-categories{
+
+   margin: 40px 0 40px 0 ;
+    &:hover{
+      // background-color: $color-card;
+      cursor: pointer;
+    }
+
+   a {
+     color: $colo-secondary;
+     font-size: 22px;
+     font-weight: bold;
+     padding: 0 0;
+   }
+
+}
+
+// check categories 
+
+
+// start of sign up 
+.sign-up {
+  width: 100%;
+  background-color:$color-card ;
+  padding: 40px 60px 60px 60px  ;
+
+    .heading{
+           margin-bottom: 50px;
+      h2 {
+        font-size: 40px;
+        color: $colo-secondary;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+
       }
-  
-  }
-  
-  
+      p {
+        font-size: 20px;
+        color:$colo-secondary;
+        font-family: 'Times New Roman', Times, serif;
+        height: 100%;
+        text-transform: uppercase;
+      }
+    }
+
+    .input-email {
+      height: 100%;
+    }
+
+    @media (max-width:768px) {
+      .input-email {
+        margin-bottom: 10px;
+      }
+    }
+
+ 
+}
+//end of sign up
 
 
   }

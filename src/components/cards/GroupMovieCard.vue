@@ -1,7 +1,7 @@
 <template>
   <div class="group-movie-card ">
     <div class="card  " >
-      <img   :src="require(`@/imgs/${imgsrc2}.png`)" alt="" />
+      <img   :src="require(`@/imgs/${imgsrc2}.jpg`)" alt="" />
       <div class="card-body pt-2 pb-2 pl-0 pr-0">
         <h5 class="card-title"> {{name}} </h5>
         <p class="card-text"> 5/10

@@ -33,6 +33,12 @@ $colo-secondary: #42b983;
             position: absolute;
             top: 5;
             left: 45%;
+            li {
+              border-radius: 40% ;
+              &:hover{
+                background-color:rgba(212, 0, 255, 0.062);
+              } 
+            }
           }
 
           @media (max-width:567px) {
@@ -51,16 +57,26 @@ $colo-secondary: #42b983;
             }
           }
         
-          .search-input {
-            border: 2px solid $colo-secondary;
-            box-shadow: $colo-secondary;
-          }
-          .search-form {
-            button {
-              border: 1px solid$color-main;
-              color: $color-main;
-            }
-          }
+          // .search-input {
+          //   border: 2px solid $colo-secondary;
+          //   box-shadow: $colo-secondary;
+          // }
+
+
+          // .search-form {
+          //   // justify-content: flex-end;
+          //   button {
+          //     border: 1px solid$color-main;
+          //     color: $color-main;
+          //   }
+          // }
+
+          
     }
+
+   
+    
+   
+    
  
 }
