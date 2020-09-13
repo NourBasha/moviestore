@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+
+
     <!--  start of carousel -->
     <div id="carousel-id" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -21,11 +23,14 @@
     </div>
     <!--  end of carousel -->
 
+
+
     <!--  start of latest -->
     <div class="latest">
 
       <h2 class="latest-h2">Hottest Movies!</h2>
       <p class="latest-p">The most recent movies and the highest in rating</p>
+      
       <div class="indicators" style="width:100%; height:100%; position:relative;">
          <font-awesome-icon  class="next" icon="chevron-right" size="4x"> </font-awesome-icon> 
        <font-awesome-icon  class="prev" icon="chevron-left" size="4x"> </font-awesome-icon>
@@ -40,12 +45,10 @@
         </div>
       </div>
     </div>
-
     <!--  end of latest -->
 
 
     <!--  start of groups -->
-
     <div class="groups">
       <div class="container-fluid">
         <h4 class="group-h4">Our Movies</h4>
@@ -59,9 +62,10 @@
 
     </div>
       </div>
-
     <!--  end of groups -->
       
+
+
     <div  class="check-categories text-center" >
             <a href="">Check Out All of Our Movies!</a> 
     </div>
@@ -99,7 +103,6 @@
 
 
     <!-- start of foooter  -->
-
         <div class="footer">
           <div class="container">
             <div class="row">
@@ -148,25 +151,16 @@
 
           </div>
         </div>
-
-
-        <div class=" text-left copy-right ">
-          <div class="container">
-          <p> COPYRIGHT &copy; Bookstore | All Rights Reserved.</p>
-
-          </div>
-        </div>
-
-
-
     <!-- end of footer  -->
+
+      <Copyright/>
 
   </div>
 </template>
 
 <script>
 import MovieCard from "../components/cards/MovieCard";
-//import GroupMovieCard from '../components/cards/GroupMovieCard'
+import Copyright from '../components/global/Copyright'
 
 export default {
   name: "Home",
@@ -192,7 +186,7 @@ export default {
   },
 
   components: {
-    MovieCard
+    MovieCard ,Copyright
   },
   mounted: function() {
     this.$nextTick(function() {
@@ -216,91 +210,6 @@ export default {
 
 <style lang="scss" scoped>
 
-
-$color-main: rgba(212, 0, 255, 0.726);
-$color-main-soft: rgba(212, 0, 255, 0.363);
-$colo-secondary: #42b983;
- $color-dark: #343a40;
- $color-card:#21262c;
- $color-soft-text : rgb(155, 155, 155);
-// footer 
-
-.footer {
-
-        padding: 30px 0;
-
-    .footer-brand {
-
-         #brand-logo {
-            color: $color-main;
-            font-size: 40px;
-            text-decoration: none;
-            span {
-              font-size: 20px;
-              color: $colo-secondary;
-            }
-          }
-
-          p{
-            color:  $color-soft-text
-          }
-    }
-
-    .helpful-links {
-     
-      h6{
-        color: $colo-secondary;
-        font-size: 25px;
-         margin-bottom: 15px;
-         margin-top: 15px;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        li {
-          a {
-            color:  $color-soft-text ;
-          }
-        }
-      }
-    }
-
-    .footer-address {
-      h6{
-        color: $colo-secondary;
-        font-size: 25px;
-         margin-top: 15px;
-         margin-bottom: 15px;
-
-
-      }
-      ul {
-        list-style: none;
-        color: $color-soft-text;
-        padding: 0;
-      }
-    }
-
-
-
-}
-
-
-// footer 
-
-
-  
-  .copy-right {
-      background-color:$color-card;
-      padding:20px 0 20px 0 ;
-      p{
-        color: $color-soft-text;
-        font-size: 14px;
-        font-weight: bold;
-        padding: 0;
-        margin: 0;
-      }
-  }
 
 
 </style>

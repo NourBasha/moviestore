@@ -9,7 +9,7 @@
         <a class="nav-link page-selector"> <router-link to="/">Home</router-link> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item  mr-2  ">
-        <a class="nav-link page-selector"><router-link to="/about">About</router-link></a>
+        <a class="nav-link page-selector"><router-link to="/browse">Browse Movies</router-link></a>
       </li>
     </ul>
   

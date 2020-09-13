@@ -173,6 +173,45 @@
     margin-bottom: 10px;
   }
 }
+.home .footer {
+  padding: 30px 0;
+}
+.home .footer .footer-brand #brand-logo {
+  color: rgba(212, 0, 255, 0.726);
+  font-size: 40px;
+  text-decoration: none;
+}
+.home .footer .footer-brand #brand-logo span {
+  font-size: 20px;
+  color: #42b983;
+}
+.home .footer .footer-brand p {
+  color: #9b9b9b;
+}
+.home .footer .helpful-links h6 {
+  color: #42b983;
+  font-size: 25px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.home .footer .helpful-links ul {
+  list-style: none;
+  padding: 0;
+}
+.home .footer .helpful-links ul li a {
+  color: #9b9b9b;
+}
+.home .footer .footer-address h6 {
+  color: #42b983;
+  font-size: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.home .footer .footer-address ul {
+  list-style: none;
+  color: #9b9b9b;
+  padding: 0;
+}
 
 body {
   background-color: white;
