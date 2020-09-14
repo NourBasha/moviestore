@@ -1,9 +1,10 @@
 <template>
   <div class="browse">
+  
     <div class="container">
 
           <div class="filter text-center">
-            <h3> Filter Movies</h3>
+            <h3> Filter Movies</h3> 
             <div class="row">
                   <div class="col-4  col-lg-3">
                         <select class="custom-select"> 
@@ -56,7 +57,7 @@
 
               </div> 
 
-          </div>
+          </div>      
 
     </div>
       <Copyright/>
@@ -64,11 +65,7 @@
 </template>
 
 <script>
-
       import Copyright from '../components/global/Copyright';
-
-
-
     var x = [];
   for(var i= 1900 ; i <= 2020 ; i++){
       x.push(i);
@@ -96,10 +93,27 @@ export default {
                   { id:15, name:'Lion King'},
                   { id:16, name:'Lion King'},]
                   ,
-                   movieYear : x
+                   movieYear : x 
+            
     }
    
-  },components : {Copyright}
+  },
+  components : {Copyright} 
+  
+//   ,
+//   created() {
+//   // // Simple GET request using axios
+//   // axios.get("https://api.npms.io/v2/search?q=vue")
+//   //   .then(response => this.info = response.data.total).catch( function (e){ console.log(" errors :"+e)});
+//    this.refreshMessage();
+// },
+//  methods: {
+//     async refreshMessage() {
+//      const response = await axios.get("https://api.npms.io/v2/search?q=vue");
+//     console.log(" response: "+response)
+//     }
+//   },
+
 }
 </script>
 

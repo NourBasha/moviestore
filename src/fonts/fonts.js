@@ -5,12 +5,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import { faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
 
 
-library.add(faChevronRight,faChevronLeft);
+library.add(faChevronRight,faChevronLeft,faStar);
 
 
 

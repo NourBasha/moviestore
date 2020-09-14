@@ -9,6 +9,11 @@ import "./scss/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import fonts file
 import './fonts/fonts';
+// importing axios 
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
 
 
 Vue.config.productionTip = false;

@@ -26,21 +26,23 @@
 
 
     <!--  start of latest -->
-    <div class="latest">
-
+    <div class="latest" >
       <h2 class="latest-h2">Hottest Movies!</h2>
       <p class="latest-p">The most recent movies and the highest in rating</p>
       
       <div class="indicators" style="width:100%; height:100%; position:relative;">
-         <font-awesome-icon  class="next" icon="chevron-right" size="4x"> </font-awesome-icon> 
-       <font-awesome-icon  class="prev" icon="chevron-left" size="4x"> </font-awesome-icon>
-      
+         <span @click="changeFontAColor()"><font-awesome-icon  class="next" icon="chevron-right" size="4x"> </font-awesome-icon></span>
+       <span @click="changeFontAColor()"><font-awesome-icon  class="prev" icon="chevron-left" size="4x"> </font-awesome-icon></span>
       </div>
 
       <div class="container">
-        <div class="row ">
-          <div class="col-12 col-md-6 col-lg-4 " v-for="item in items" :key="item.id">
-            <MovieCard :imgs="imgsrc" :name="item.name" />
+        <div class="row card-row" style="flex-wrap:nowrap; overflow: hidden;">
+          <div class="col-12 col-md-6 col-lg-4"
+           v-for="movie in hottestMovies" :key="movie.id"> <!-- figure out a way to reach that key  -->
+            <MovieCard :img="imagePath+movie.poster_path"
+                        :title ="movie.title"
+                        :overview="movie.overview"  
+                        />
           </div>
         </div>
       </div>
@@ -52,10 +54,18 @@
     <div class="groups">
       <div class="container-fluid">
         <h4 class="group-h4">Our Movies</h4>
-      <div class="row first-category-row" style="margin:0; padding:0;">
-        <div style="margin:0; padding:0;" class="col-md-3 " 
+      <div class="row first-category-row" style="margin:0; padding:0; flex-wrap:wrap;">
+        <div style="margin:0; padding:0;" class="col-md-3 group-col" 
         v-for="movie in groupMovies" :key="movie.id" >
-              <img style="padding:0; margin:0; width:100%;" src="@/imgs/sh01.jpg" alt="">
+              <div class="rating" > 
+               
+                <span class="top-span">
+                   <font-awesome-icon style="color:yellow;" class="next" icon="star" > </font-awesome-icon>
+                   {{movie.vote_average}}</span><span style="font-size:15px;">\10</span> 
+              </div>
+              <div class="title"> <span > {{movie.title}} </span> </div>
+              <div class="release_date"> <span> {{movie.release_date}} </span> </div>
+              <img style="padding:0; margin:0; width:100%;" :src="imagePath + movie.poster_path" alt="">
         </div>
       </div>
 
@@ -159,51 +169,69 @@
 </template>
 
 <script>
+      import axios from 'axios';
+
 import MovieCard from "../components/cards/MovieCard";
-import Copyright from '../components/global/Copyright'
+import Copyright from '../components/global/Copyright';
 
 export default {
   name: "Home",
   data() {
     return {
       navHeight: 63,
-      imgsrc: "sh01",
-      items: [
-        { id: 1, name: "Maha" },
-        { id: 2, name: "Samar" },
-        { id: 3, name: "Aya" }
-      ],
-      groupMovies: [  { id: 1, name: "Southpaw" },
-        { id: 2, name: "Titanic" },
-        { id: 3, name: "The Hateful Eight" },
-        { id: 4, name: "Titanic" },
-         { id: 5, name: "Titanic" },
-        { id: 6, name: "The Hateful Eight" },
-        { id: 7, name: "Titanic" }
-        ],
-        imgsrc2 : "sh02"
+      apiKey : '83a0145e56d35a45ba5ea0f752806cd2',
+      hottestMovies : [],
+      slicedOverviews : [],
+      groupMovies: [ ],
+        imagePath : "https://image.tmdb.org/t/p/w300",
     };
   },
 
   components: {
     MovieCard ,Copyright
   },
-  mounted: function() {
-    this.$nextTick(function() {
-      var w = window.innerHeight;
-      var el = document.getElementsByClassName("carousel-inner")[0];
+   
+ async mounted() {
+          //getting our hottest movies (trnding)
+          const trending =  await axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key='+this.apiKey);
+          this.hottestMovies = trending.data.results;
+            // cutting the overview string
+            for (var i = 0 ; i<this.hottestMovies.length;i++){
+                  this.slicedOverviews[i] = this.hottestMovies[i].overview.replace('-',' ').replace('—',' ').split(' ').slice(0,12).join(' ')+' ...';
+                  this.hottestMovies[i].overview = this.slicedOverviews[i];
+            }
 
-      el.style.height = w - this.navHeight + "px";
 
-      window.addEventListener("resize", this.adjustHeight);
-    });
+            // getting our movie collection (popular)
+             const popular =  await axios.get('https://api.themoviedb.org/3/movie/popular?api_key='+this.apiKey+'&language=en-US&page=1');
+             this.groupMovies = popular.data.results;       
+      
+
+        this.$nextTick(function() {
+          var w = window.innerHeight;
+          var el = document.getElementsByClassName("carousel-inner")[0];
+          el.style.height = w - this.navHeight + "px";
+          window.addEventListener("resize", this.adjustHeight);
+
+
+        });
+       
+
+
   },
   methods: {
     adjustHeight() {
       var w = window.innerHeight;
       var el = document.getElementsByClassName("carousel-inner")[0];
       el.style.height = w - this.navHeight + "px";
-    },
+    } ,
+    
+    changeFontAColor () {
+      // el.style.color = '#42b983';
+
+      // console.log('just been clicked');
+      }
+
   },
 };
 </script>

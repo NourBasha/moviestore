@@ -78,35 +78,42 @@
 .home .latest .latest-p {
   font-size: 25px;
   font-family: 'Times New Roman', Times, serif;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #42b983;
+}
+.home .latest .indicators:click {
+  color: yellow;
 }
 .home .latest .next {
   position: absolute;
-  top: 50px;
+  top: 40px;
   right: 20px;
   border-radius: 4px;
   padding: 1px 5px;
-  color: #42b983;
+  color: white;
   text-align: center;
   font-weight: bold;
   height: 500px;
   cursor: pointer;
+  z-index: 2;
+  background-color: #42b98357;
 }
 .home .latest .next:hover {
   background-color: #85abd14b;
 }
 .home .latest .prev {
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 20px;
   border-radius: 4px;
   padding: 1px 5px;
-  color: #42b983;
+  color: white;
   text-align: center;
   font-weight: bold;
   height: 500px;
   cursor: pointer;
+  z-index: 2;
+  background-color: #42b98357;
 }
 .home .latest .prev:hover {
   background-color: #85abd14b;
@@ -129,6 +136,62 @@
 }
 .home .groups .first-category-row {
   margin-bottom: 20px;
+}
+.home .groups .group-col {
+  position: relative;
+}
+.home .groups .group-col:hover {
+  cursor: pointer;
+}
+.home .groups .group-col:hover > .rating {
+  display: block;
+}
+.home .groups .group-col:hover > .title {
+  display: block;
+}
+.home .groups .group-col:hover > .release_date {
+  display: block;
+}
+.home .groups .group-col .rating {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  background-color: #343a40c0;
+  border-radius: 10px;
+  display: none;
+  padding: 0 30px 0 30px;
+}
+.home .groups .group-col .rating span {
+  color: #42b983;
+  font-size: 30px;
+  padding: 0;
+}
+.home .groups .group-col .title {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+  left: 5px;
+  background-color: #343a40e3;
+  border-radius: 10px;
+  display: none;
+}
+.home .groups .group-col .title span {
+  color: #42b983;
+  padding: 20px;
+  font-size: 30px;
+}
+.home .groups .group-col .release_date {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #343a40c0;
+  border-radius: 10px;
+  display: none;
+}
+.home .groups .group-col .release_date span {
+  color: #42b983;
+  padding: 20px;
+  font-size: 14px;
 }
 .home .check-categories {
   margin: 40px 0 40px 0;
