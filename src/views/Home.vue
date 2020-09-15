@@ -11,13 +11,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item carousel-one active">
-          <img src="../imgs/slider01.jpg" alt="" />
+          <img style="width:100%; height:inherit;" :src="imagePathOriginal+AdImages[0].poster_path" alt="" />
         </div>
         <div class="carousel-item carousel-two">
-          <img src="../imgs/slider02.jpg" alt="" />
+          <img style="width:100%; height:inherit;" :src="imagePathOriginal+AdImages[1].poster_path" alt="" />
         </div>
         <div class="carousel-item carousel-three">
-          <img src="../imgs/slider03.jpg" alt="" />
+          <img style="width:100%; height:inherit;" :src="imagePathOriginal+AdImages[2].poster_path" alt="" />
         </div>
       </div>
     </div>
@@ -40,15 +40,15 @@
          
           <div class="card-col col-12 col-md-6 col-lg-4"
            v-for="(movie, index) in hottestMovies" :key="movie.id" 
-           v-show="hottestMoviesVisible[index]"> 
+           v-show="hottestMoviesVisible[index]" name="component-fade" mode="out-in"> 
              <!-- <transition name="component-fade" mode="out-in"> -->
               <MovieCard :img="imagePath+movie.poster_path"
                         :title ="movie.title"
                         :overview="movie.overview"  
+                        :rating="movie.vote_average"
                         />
                 <!-- </transition> -->
           </div>
-         
         </div>
       </div>
     </div>
@@ -63,7 +63,6 @@
         <div style="margin:0; padding:0;" class="col-md-3 group-col" 
         v-for="movie in groupMovies" :key="movie.id" >
               <div class="rating" > 
-               
                 <span class="top-span">
                    <font-awesome-icon style="color:yellow;" class="next" icon="star" > </font-awesome-icon>
                    {{movie.vote_average}}</span><span style="font-size:15px;">\10</span> 
@@ -185,11 +184,14 @@ export default {
     return {
       navHeight: 63,
       apiKey : '83a0145e56d35a45ba5ea0f752806cd2',
+      AdImages:[],
       hottestMovies : [],
       hottestMoviesVisible : [ false  ],
       slicedOverviews : [],
-      groupMovies: [ ],
+      groupMovies: [],
+      groupMoviesRlease: [],
         imagePath : "https://image.tmdb.org/t/p/w300",
+        imagePathOriginal : "https://image.tmdb.org/t/p/original"
     };
   },
 
@@ -206,22 +208,26 @@ export default {
              const popular =  await axios.get('https://api.themoviedb.org/3/movie/popular?api_key='+this.apiKey+'&language=en-US&page=1');
              this.groupMovies = popular.data.results;       
       
-
+           const ads = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key='+this.apiKey+'&language=en-US&page=1');
+           this.AdImages = ads.data.results;
+        
         this.$nextTick(function() {
-
           var w = window.innerHeight;
           var el = document.getElementsByClassName("carousel-inner")[0];
           el.style.height = w - this.navHeight + "px";
           window.addEventListener("resize", this.adjustHeight);
 
-          
 
         });
 
           // cutting the overview string
-            for (var i = 0 ; i<this.hottestMovies.length;i++){
+            for (let i = 0 ; i<this.hottestMovies.length;i++){
                   this.slicedOverviews[i] = this.hottestMovies[i].overview.replace('-',' ').replace('—',' ').split(' ').slice(0,12).join(' ')+' ...';
                   this.hottestMovies[i].overview = this.slicedOverviews[i];    
+            }
+             for (let i = 0 ; i<this.groupMovies.length;i++){
+                  this.groupMoviesRlease[i] = this.groupMovies[i].release_date.slice(0,4);
+                  this.groupMovies[i].release_date = this.groupMoviesRlease[i];    
             }
             //setting visibility to first 3 cards
             for(var r = 0 ; r<this.hottestMovies.length; r++){

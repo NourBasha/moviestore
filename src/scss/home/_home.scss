@@ -67,13 +67,17 @@ background-color: #21262c;      }
   //    }
 
   // }
-  .component-fade-enter-active, .component-fade-leave-active {
-    transition: opacity .3s ease;
-  }
-  .component-fade-enter, .component-fade-leave-to
-  /* .component-fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
+  // .component-fade-enter-active, .component-fade-leave-active {
+  //   transition: opacity .3s ease;
+  // }
+  // .component-fade-enter, .component-fade-leave-to
+  // /* .component-fade-leave-active below version 2.1.8 */ {
+  //   opacity: 0;
+  // }
+
+  // .component-fade-enter-active, .component-fade-leave-active {
+  //   transition: opacity .3s ease;
+  // }
     
         .next {
           position: absolute;
@@ -209,6 +213,7 @@ background-color: #21262c;      }
         color: $colo-secondary;
         padding: 20px;
         font-size: 14px;
+        font-weight: bold;
        }
      }
 

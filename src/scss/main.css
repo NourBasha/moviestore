@@ -84,13 +84,6 @@
 .home .latest .indicators:click {
   color: yellow;
 }
-.home .latest .component-fade-enter-active, .home .latest .component-fade-leave-active {
-  transition: opacity .3s ease;
-}
-.home .latest .component-fade-enter, .home .latest .component-fade-leave-to
- {
-  opacity: 0;
-}
 .home .latest .next {
   position: absolute;
   top: 40px;
@@ -199,6 +192,7 @@
   color: #42b983;
   padding: 20px;
   font-size: 14px;
+  font-weight: bold;
 }
 .home .check-categories {
   margin: 40px 0 40px 0;
