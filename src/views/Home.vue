@@ -31,19 +31,24 @@
       <p class="latest-p">The most recent movies and the highest in rating</p>
       
       <div class="indicators" style="width:100%; height:100%; position:relative;">
-         <span @click="changeFontAColor()"><font-awesome-icon  class="next" icon="chevron-right" size="4x"> </font-awesome-icon></span>
-       <span @click="changeFontAColor()"><font-awesome-icon  class="prev" icon="chevron-left" size="4x"> </font-awesome-icon></span>
+         <span @click="swipeHottestMoviesNext()"><font-awesome-icon  class="next" icon="chevron-right" size="4x"> </font-awesome-icon></span>
+       <span @click="swipeHottestMoviesPrev()"><font-awesome-icon  class="prev" icon="chevron-left" size="4x"> </font-awesome-icon></span>
       </div>
 
       <div class="container">
         <div class="row card-row" style="flex-wrap:nowrap; overflow: hidden;">
-          <div class="col-12 col-md-6 col-lg-4"
-           v-for="movie in hottestMovies" :key="movie.id"> <!-- figure out a way to reach that key  -->
-            <MovieCard :img="imagePath+movie.poster_path"
+         
+          <div class="card-col col-12 col-md-6 col-lg-4"
+           v-for="(movie, index) in hottestMovies" :key="movie.id" 
+           v-show="hottestMoviesVisible[index]"> 
+             <!-- <transition name="component-fade" mode="out-in"> -->
+              <MovieCard :img="imagePath+movie.poster_path"
                         :title ="movie.title"
                         :overview="movie.overview"  
                         />
+                <!-- </transition> -->
           </div>
+         
         </div>
       </div>
     </div>
@@ -181,6 +186,7 @@ export default {
       navHeight: 63,
       apiKey : '83a0145e56d35a45ba5ea0f752806cd2',
       hottestMovies : [],
+      hottestMoviesVisible : [ false  ],
       slicedOverviews : [],
       groupMovies: [ ],
         imagePath : "https://image.tmdb.org/t/p/w300",
@@ -195,12 +201,6 @@ export default {
           //getting our hottest movies (trnding)
           const trending =  await axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key='+this.apiKey);
           this.hottestMovies = trending.data.results;
-            // cutting the overview string
-            for (var i = 0 ; i<this.hottestMovies.length;i++){
-                  this.slicedOverviews[i] = this.hottestMovies[i].overview.replace('-',' ').replace('—',' ').split(' ').slice(0,12).join(' ')+' ...';
-                  this.hottestMovies[i].overview = this.slicedOverviews[i];
-            }
-
 
             // getting our movie collection (popular)
              const popular =  await axios.get('https://api.themoviedb.org/3/movie/popular?api_key='+this.apiKey+'&language=en-US&page=1');
@@ -208,31 +208,109 @@ export default {
       
 
         this.$nextTick(function() {
+
           var w = window.innerHeight;
           var el = document.getElementsByClassName("carousel-inner")[0];
           el.style.height = w - this.navHeight + "px";
           window.addEventListener("resize", this.adjustHeight);
 
+          
 
         });
+
+          // cutting the overview string
+            for (var i = 0 ; i<this.hottestMovies.length;i++){
+                  this.slicedOverviews[i] = this.hottestMovies[i].overview.replace('-',' ').replace('—',' ').split(' ').slice(0,12).join(' ')+' ...';
+                  this.hottestMovies[i].overview = this.slicedOverviews[i];    
+            }
+            //setting visibility to first 3 cards
+            for(var r = 0 ; r<this.hottestMovies.length; r++){
+                  if (r<3){
+                    this.hottestMoviesVisible[r] = true;
+                  }else {
+                  this.hottestMoviesVisible[r] = false;
+                  }
+          
+            }
+
        
 
 
-  },
+  }, 
+
   methods: {
     adjustHeight() {
       var w = window.innerHeight;
       var el = document.getElementsByClassName("carousel-inner")[0];
       el.style.height = w - this.navHeight + "px";
     } ,
+       swipeHottestMoviesNext () {
+         console.log('inside wipe method');
+            for (let i = 0; i<this.hottestMoviesVisible.length; i++){
+            
+              if (this.hottestMoviesVisible[i] == true ){ 
+                    console.log('inside true index : '+ i);
+
+                    if (this.hottestMoviesVisible[i+1] == false){
+                        this.hottestMoviesVisible[i+1] =true;
+                         console.log('new value of i+1 is: '+ this.hottestMoviesVisible[i+1]);
+                         this.hottestMoviesVisible[i] =false;
+                         console.log('new value of i is: '+ this.hottestMoviesVisible[i]);
+                         if(i-1 >= 0 ){
+                            this.hottestMoviesVisible[i-1] =false;
+                            console.log('new value of i-1 is: '+ this.hottestMoviesVisible[i-1]);
+                         }
+                          if (i-2 >=0 ){
+                           this.hottestMoviesVisible[i-2] =false;
+                           console.log('new value of i-2 is: '+ this.hottestMoviesVisible[i-2]);
+                         }
+
+                         if (i+2 < this.hottestMoviesVisible.length){
+                           this.hottestMoviesVisible[i+2] = true;
+                        console.log('new value of i+2 is: '+ this.hottestMoviesVisible[i+2]);
+
+                         }
+                         if(i+3 < this.hottestMoviesVisible.length){
+                            this.hottestMoviesVisible[i+3] = true;
+                 console.log('new value of i+3 is: '+ this.hottestMoviesVisible[i+3]);
+                         } 
+                    this.$forceUpdate();
+                    break;
+                    }
+           
+            }
+            
+          }   
+      },
+
+      swipeHottestMoviesPrev() {
+        for (let i = this.hottestMoviesVisible.length -1 ; i >= 0 ; i--){
+          if(this.hottestMoviesVisible[i]==true){
+            if(this.hottestMoviesVisible[i-1]==false){
+                this.hottestMoviesVisible[i] = false ;
+                this.hottestMoviesVisible[i-1] = true;
+                if (i-2 >=0){
+                  this.hottestMoviesVisible[i-2] = true ;
+                }if (i-3 >=0 ){
+                  this.hottestMoviesVisible[i-3] = true ;
+                }
+                if(i+1<this.hottestMoviesVisible.length){
+                    this.hottestMoviesVisible[i+1] = false ;
+                }
+                if(i+2<this.hottestMoviesVisible.length){
+                    this.hottestMoviesVisible[i+2] = false ;
+                }
+              
+                this.$forceUpdate();
+                break;
+            }
+          }
+        }
+      },
+
     
-    changeFontAColor () {
-      // el.style.color = '#42b983';
 
-      // console.log('just been clicked');
-      }
-
-  },
+  }
 };
 </script>
 

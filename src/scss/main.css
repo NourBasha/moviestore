@@ -84,10 +84,17 @@
 .home .latest .indicators:click {
   color: yellow;
 }
+.home .latest .component-fade-enter-active, .home .latest .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.home .latest .component-fade-enter, .home .latest .component-fade-leave-to
+ {
+  opacity: 0;
+}
 .home .latest .next {
   position: absolute;
   top: 40px;
-  right: 20px;
+  right: 10px;
   border-radius: 4px;
   padding: 1px 5px;
   color: white;
@@ -104,7 +111,7 @@
 .home .latest .prev {
   position: absolute;
   top: 40px;
-  left: 20px;
+  left: 10px;
   border-radius: 4px;
   padding: 1px 5px;
   color: white;

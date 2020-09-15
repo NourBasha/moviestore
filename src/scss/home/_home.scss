@@ -53,15 +53,32 @@ background-color: #21262c;      }
   
   }
 
-      // .next-a {
-      //   &:hover{
-      //     background-color:#85abd1a1;
+  // .card-row {
+  //   -webkit-transition: all .9s ease-in-out;
+  //   -moz-transition: all .9s ease-in-out;
+  //   -o-transition: all .9s ease-in-out;
+  //   transition: all .9s ease-in-out;
 
-      //  }
+  //   .card-col {
+  //     -webkit-transition: all 9s ease-in-out; 
+  //     -moz-transition: all 9s ease-in-out;
+  //     -o-transition: all 9s ease-in-out; 
+  //      transition: all 9s ease-in-out;
+  //    }
+
+  // }
+  .component-fade-enter-active, .component-fade-leave-active {
+    transition: opacity .3s ease;
+  }
+  .component-fade-enter, .component-fade-leave-to
+  /* .component-fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+    
         .next {
           position: absolute;
           top: 40px ;
-          right: 20px;
+          right: 10px;
          // background-color:$color-main;
           border-radius: 4px;
           padding: 1px 5px;
@@ -72,7 +89,9 @@ background-color: #21262c;      }
           cursor: pointer;
           z-index: 2;
           background-color: #42b98357;
-          
+          // &:{
+          //   background-color:#187ce04b;
+          // }
           &:hover{
             background-color:#85abd14b;
   
@@ -81,7 +100,7 @@ background-color: #21262c;      }
             .prev {
           position: absolute;
            top: 40px;
-          left: 20px;
+          left: 10px;
          // background-color: $color-main;
           border-radius: 4px;
           padding: 1px 5px;
