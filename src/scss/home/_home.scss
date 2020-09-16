@@ -38,50 +38,16 @@ background-color: $color-dark;
       font-weight: bold;
       font-family:'Times New Roman', Times, serif;
       color: $colo-secondary;
-background-color: #21262c;      }
+      background-color: #21262c;      }
     .latest-p{
       font-size: 25px;
       font-family:'Times New Roman', Times, serif;
       margin-bottom: 10px;
       color:$colo-secondary;
     }
-
-  .indicators{
-    &:click{
-      color: yellow;
-    }
-  
-  }
-
-  // .card-row {
-  //   -webkit-transition: all .9s ease-in-out;
-  //   -moz-transition: all .9s ease-in-out;
-  //   -o-transition: all .9s ease-in-out;
-  //   transition: all .9s ease-in-out;
-
-  //   .card-col {
-  //     -webkit-transition: all 9s ease-in-out; 
-  //     -moz-transition: all 9s ease-in-out;
-  //     -o-transition: all 9s ease-in-out; 
-  //      transition: all 9s ease-in-out;
-  //    }
-
-  // }
-  // .component-fade-enter-active, .component-fade-leave-active {
-  //   transition: opacity .3s ease;
-  // }
-  // .component-fade-enter, .component-fade-leave-to
-  // /* .component-fade-leave-active below version 2.1.8 */ {
-  //   opacity: 0;
-  // }
-
-  // .component-fade-enter-active, .component-fade-leave-active {
-  //   transition: opacity .3s ease;
-  // }
-    
         .next {
           position: absolute;
-          top: 40px ;
+          top: 20px ;
           right: 10px;
          // background-color:$color-main;
           border-radius: 4px;
@@ -103,7 +69,7 @@ background-color: #21262c;      }
           }
             .prev {
           position: absolute;
-           top: 40px;
+           top: 20px;
           left: 10px;
          // background-color: $color-main;
           border-radius: 4px;
@@ -157,7 +123,7 @@ background-color: #21262c;      }
      margin-bottom: 20px;
    }
    .group-col {
-     position: relative;
+   
      &:hover {
        cursor: pointer;
      }

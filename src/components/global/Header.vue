@@ -23,9 +23,9 @@ export default {
     name : 'Header',
      methods: {
         matchHeight() {
-            var heightString = this.$refs.mynavbar.clientHeight + 'px';
-            console.log("height string is : " + heightString);
-            // Vue.set(this.leftColStyles, 'height', heightString); 
+            // var heightString = this.$refs.mynavbar.clientHeight + 'px';
+            // console.log("height string is : " + heightString);
+            // // Vue.set(this.leftColStyles, 'height', heightString); 
         }
     },
     mounted() {

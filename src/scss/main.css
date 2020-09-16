@@ -81,12 +81,9 @@
   margin-bottom: 10px;
   color: #42b983;
 }
-.home .latest .indicators:click {
-  color: yellow;
-}
 .home .latest .next {
   position: absolute;
-  top: 40px;
+  top: 20px;
   right: 10px;
   border-radius: 4px;
   padding: 1px 5px;
@@ -103,7 +100,7 @@
 }
 .home .latest .prev {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 10px;
   border-radius: 4px;
   padding: 1px 5px;
@@ -136,9 +133,6 @@
 }
 .home .groups .first-category-row {
   margin-bottom: 20px;
-}
-.home .groups .group-col {
-  position: relative;
 }
 .home .groups .group-col:hover {
   cursor: pointer;

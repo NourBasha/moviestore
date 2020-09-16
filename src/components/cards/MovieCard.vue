@@ -49,7 +49,7 @@ $color-card:#21262c;
         position: relative;
               .rating {
                     position: absolute;
-                    right:20px;
+                    right:10px;
                     top:10px;
                     background-color: #343a40c0;
                     border-radius: 10px;
