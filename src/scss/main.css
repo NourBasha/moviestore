@@ -134,6 +134,9 @@
 .home .groups .first-category-row {
   margin-bottom: 20px;
 }
+.home .groups .group-col {
+  position: relative;
+}
 .home .groups .group-col:hover {
   cursor: pointer;
 }
@@ -185,7 +188,7 @@
 .home .groups .group-col .release_date span {
   color: #42b983;
   padding: 20px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 .home .check-categories {
