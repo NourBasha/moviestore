@@ -154,8 +154,9 @@ var currentDate = new Date();
 
 var x = [];
 for (var i = 1900; i <= currentDate.getFullYear(); i++) {
-  x.push(i);
+  x.unshift(i);
 }
+
 
 export default {
   name: "Browse",
@@ -182,7 +183,7 @@ export default {
                   this.getMovies();
               }else {
                 // search by movie name
-                this.getMovieByname();
+               this.getMovieByName()
               }
           }else{
             //apply filter here
@@ -247,6 +248,7 @@ export default {
           for (let i = 0; i < this.popMovies.results.length; i++) {
             this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
           }
+           this.muteExtraPages();
         })
         .catch((error) => {
           this.moviesLoadingError = true;
@@ -284,6 +286,7 @@ export default {
           for (let i = 0; i < this.popMovies.results.length; i++) {
             this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
           }
+          this.muteExtraPages();
         })
         .catch((error) => {
          // this.moviesLoadingError = true;
@@ -328,6 +331,8 @@ export default {
           for (let i = 0; i < this.popMovies.results.length; i++) {
             this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
           }
+                    this.muteExtraPages();
+
         })
         .catch((error) => {
           this.moviesLoadingError = true;
@@ -372,8 +377,7 @@ export default {
                  this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
               }
           }
-         
-         
+                   this.muteExtraPages();
         })
         .catch((error) => {
           this.moviesLoadingError = true;
@@ -389,6 +393,12 @@ export default {
              document.getElementsByClassName("genre-filter")[0].value = "-";
              document.getElementsByClassName("year-filter")[0].value = "-";
              document.getElementsByClassName("rating-filter")[0].value = "-";
+             //
+             this.paging[0]= 1 ; 
+             this.paging[1]= 2 ;
+             this.paging[2]= 3 ; 
+             this.currentPage=1;
+
        this.filterApplied = false;
            
        this.filterByMovieName = true; // use this for paging 
@@ -397,7 +407,7 @@ export default {
 
         if (movieInput != ""){
           movieInput = movieInput.split(" ").join("+");
-              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+"&query="+ movieInput;
+              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+"&query="+ movieInput+"&page="+this.currentPage;
             axios
                 .get(url )
                 .then((response) => {
@@ -408,6 +418,7 @@ export default {
                     this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
                                }
                       }  
+                      this.muteExtraPages();
                     }else{
                       alert("No such movie is found.");
                     }
@@ -453,6 +464,8 @@ export default {
           for (let i = 0; i < this.popMovies.results.length; i++) {
             this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
           }
+                    this.muteExtraPages();
+
         })
         .catch((error) => {
           this.moviesLoadingError = true;
@@ -464,13 +477,12 @@ export default {
     },
     getMovieByName(){
 
-
           /// we need to include the page number in our query!!!!
       let movieInput = document.getElementsByClassName("filter-search-input")[0].value;
 
         if (movieInput != ""){
           movieInput = movieInput.split(" ").join("+");
-              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+"&query="+ movieInput;
+              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+"&query="+movieInput+"&page="+this.currentPage;
             axios
                 .get(url )
                 .then((response) => {
@@ -481,6 +493,8 @@ export default {
                     this.popMovies.results[i].release_date = this.popMovies.results[i].release_date.slice(0, 4);
                                }
                       }  
+                                this.muteExtraPages();
+
                     }else{
                       alert("No such movie is found.");
                     }
@@ -495,14 +509,23 @@ export default {
     }
     },
     nextPageClick() {
-      if (this.paging[2] <= this.popMovies.total_pages) {
-        this.paging[0] = this.paging[this.paging.length - 1] + 1;
-        this.paging[1] = this.paging[0] + 1;
-        this.paging[2] = this.paging[1] + 1;
-        this.currentPage = this.paging[0];
-        document.getElementsByClassName("first")[0].classList.add("active");
-        document.getElementsByClassName("middle")[0].classList.remove("active");
+
+      if (this.paging[2]+1 <= this.popMovies.total_pages) {
+         
+
+          this.paging[0] = this.paging[this.paging.length - 1] + 1;
+          this.currentPage = this.paging[0];
+
+           this.paging[1] = this.paging[0] + 1;
+           this.paging[2] = this.paging[1] + 1;
+        
+          this.muteExtraPages();
+
+          document.getElementsByClassName("first")[0].classList.add("active");
+         document.getElementsByClassName("middle")[0].classList.remove("active");
         document.getElementsByClassName("last")[0].classList.remove("active");
+
+        
         this.$forceUpdate();
       }
     },
@@ -529,13 +552,26 @@ export default {
     changeLast(event) {
       this.currentPage = event.target.innerHTML;
     },
-    // imageError(event){
-    // //  event.target.src = "./imgs/alt.jpg";
-    // console.log("src is "+ event.target.src);
-    // event.target.src = "@/imgs/alt.jpg";
-    // console.log("src is "+ event.target.src);
-
-    // }
+    muteExtraPages(){
+        if (this.popMovies.total_pages <= this.currentPage+2){
+              switch(this.popMovies.total_pages){
+                case this.currentPage :  {  
+                              document.getElementsByClassName("middle")[0].classList.add("muted");
+                              document.getElementsByClassName("last")[0].classList.add("muted"); 
+                              break; } 
+                case this.currentPage +1 :  {  
+                              document.getElementsByClassName("last")[0].classList.add("muted");
+                              break ;}
+                case this.currentPage+2 :  {   document.getElementsByClassName("next-page")[0].classList.add("muted");  
+                     break ;}
+              }
+        }else {
+                document.getElementsByClassName("middle")[0].classList.remove("muted");
+                document.getElementsByClassName("last")[0].classList.remove("muted");
+                document.getElementsByClassName("next-page")[0].classList.remove("muted"); 
+        }
+    }
+  
   
   },
 };
@@ -639,6 +675,11 @@ $color-soft-text: rgb(155, 155, 155);
 
   .paging {
     margin-top: 30px;
+
+   .muted {
+          pointer-events: none;
+          cursor: default;
+        }
     li {
       a {
         background-color: $color-card;
