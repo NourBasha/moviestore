@@ -358,9 +358,8 @@ export default {
  mounted() {
     //  this.$nextTick(function() {
     // });
-
-
-  
+    
+   
 },
 methods: {
     adjustHeight() {

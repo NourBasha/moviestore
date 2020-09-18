@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Movie from '../views/Movie.vue'
 
 Vue.use(VueRouter);
 
@@ -18,7 +19,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Browse.vue")
-  }
+  },
+  {
+    path: "/movie",
+    name: "Movie",
+    component: Movie
+  },
 ];
 
 const router = new VueRouter({

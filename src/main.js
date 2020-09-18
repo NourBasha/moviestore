@@ -21,15 +21,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App),
-  methods: {
-        seeele (){
-        }
-  } ,
-  mounted: function () {
-    this.$nextTick(function () {
-    
-    })
-  }
- 
+  render: h => h(App)
 }).$mount("#app");

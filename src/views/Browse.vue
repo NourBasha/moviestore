@@ -87,6 +87,7 @@
             style="margin:0; padding:0;"
             v-for="movie in popMovies.results"
             :key="movie.id"
+
           >
             <div class="rating">
               <span class="top-span">
@@ -101,11 +102,21 @@
             <div class="release_date">
               <span> {{ movie.release_date }} </span>
             </div>
-            <img class="movie-image"
-              style="padding:0; margin:0; width:100%;"
+            <div v-if="movie.poster_path != undefined" class="movie-img-parent"  style="heigh:100%">
+                 <router-link to="/movie"> <img class="movie-image img-fluid rounded "
+              style="padding:0; margin:0; width:100%; max-height:100%; "
               :src="imagePath+movie.poster_path"
-              alt="Image not Found"
-            />
+              alt="Image not Found"/>     
+                 </router-link>              
+            </div>
+            <div v-else class="movie-img-parent">
+                <router-link to="/movie"><img class="movie-image img-fluid"
+              style="padding:0; margin:0; width:100%; "
+              src="../imgs/alt.jpg"
+              alt=""/>  </router-link>
+                 
+            </div>
+           
           </div>
         </div>
       </section>
@@ -672,6 +683,15 @@ $color-soft-text: rgb(155, 155, 155);
       font-weight: bold;
     }
   }
+
+.movie-img-parent{
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+   background-size: cover;
+}
+
 
   .paging {
     margin-top: 30px;
