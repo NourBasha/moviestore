@@ -8,30 +8,51 @@
       <section v-else>
         <div v-if="loadingMovie">Loading ...</div>
         <div class="row first-row" v-else>
-          <div class="col-4">
-            <img
-              class="poster-image img-fluid "
-              :src="imagePath + movie.poster_path"
-              alt=""
-            />
-          </div>
-          <div class="col-8 text-left movie-meta">
-            <div class="rating-col">
-              <div class="rate-val">
-                Rating:
-                <span class="val"> {{ movie.vote_average }} </span>
-                <span class="out-of">/10</span>
+              <div class="col-4">
+                <img
+                  class="poster-image img-fluid "
+                  :src="imagePath + movie.poster_path"
+                  alt=""
+                />
               </div>
-            </div>
-            <div class="rate-star">
-              <font-awesome-icon icon="star" class="yello"> </font-awesome-icon>
-            </div>
+              <div class="col-8 text-left movie-meta">
+                        <div class="row">
+                                <div class="rating-col">
+                                      <div  class="rate-val">
+                                            Rating:
+                                            <span class="val"> {{ movie.vote_average }} </span>
+                                            <span class="out-of">/10</span>
+                                      </div>
+                               </div>
 
-            <div class="overview-col">
-              <h6>Overview</h6>
-              <p>{{ movie.overview }}</p>
-            </div>
-          </div>
+                              <div class="rate-star">
+                                <font-awesome-icon icon="star" class="yello"> </font-awesome-icon>
+                              </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="overview-col">
+                                <h6>Overview</h6>
+                                <p>{{ movie.overview }}</p>
+                            </div>
+                        </div>
+
+                        <div class="row" style="display:flex;">             
+                              <div class=" video " style="justify-self:center;" 
+                                   v-for="video in movie.videos.results" :key="video.id" >
+                                  <div v-if="video.type=='Trailer'">
+                                          <iframe width="400px" height="300px"
+                                          :src="videoPath+video.key"
+                                          frameborder="0" 
+                                          allow="accelerometer; autoplay; clipboard-write; " 
+                                          allowfullscreen></iframe>
+                                  </div>
+                              </div>
+                        </div>
+
+                 </div>
+              
+         
         </div>
       </section>
 
@@ -42,16 +63,7 @@
       <section v-else>
         <div v-if="loadingMovie">Loading ...</div>
         <div class="row " v-else>
-            
-            <div class="col-6 offset-3"  v-for="video in movie.videos.results" :key="video.id" >
-                    <div v-if="video.type=='Trailer'">
-                            <iframe width="auto" height="auto"
-                            :src="videoPath+video.key"
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
-                    </div>
-            </div>
+                    
           
         </div>
       </section>
@@ -190,6 +202,7 @@ $color-soft-text: rgb(155, 155, 155);
 
     .movie-meta {
       align-self: center;
+    
       .rating-col {
         margin-top: 5px;
         display: inline;
@@ -224,7 +237,7 @@ $color-soft-text: rgb(155, 155, 155);
           color: white;
           line-height: 2;
           font-size: 14px;
-          width: 80%;
+          width: 60%;
         }
       }
     }
