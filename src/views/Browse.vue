@@ -103,7 +103,7 @@
               <span> {{ movie.release_date }} </span>
             </div>
             <div v-if="movie.poster_path != undefined" class="movie-img-parent"  style="heigh:100%">
-                 <router-link to="/movie"> <img class="movie-image img-fluid rounded "
+                 <router-link :to="{path: '/movie/'+movie.id}"> <img class="movie-image img-fluid rounded "
               style="padding:0; margin:0; width:100%; max-height:100%; "
               :src="imagePath+movie.poster_path"
               alt="Image not Found"/>     
@@ -582,7 +582,6 @@ export default {
                 document.getElementsByClassName("next-page")[0].classList.remove("muted"); 
         }
     }
-  
   
   },
 };
