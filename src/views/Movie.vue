@@ -8,15 +8,19 @@
       <section v-else>
         <div v-if="loadingMovie">Loading ...</div>
         <div class="row first-row" v-else>
-              <div class="col-4">
+              <div class="col-12   col-lg-4">
                 <img
                   class="poster-image img-fluid "
                   :src="imagePath + movie.poster_path"
                   alt=""
                 />
               </div>
-              <div class="col-8 text-left movie-meta">
-                        <div class="row">
+              <div class="col-12 col-lg-8 text-left movie-meta">
+                        <div class="row d-flex justify-content-center movie-name-row">
+                          <h1> {{movie.title}}</h1>
+                        </div>
+
+                        <div class="row rating-row">
                                 <div class="rating-col">
                                       <div  class="rate-val">
                                             Rating:
@@ -25,84 +29,91 @@
                                       </div>
                                </div>
 
-                              <div class="rate-star">
-                                <font-awesome-icon icon="star" class="yello"> </font-awesome-icon>
+                              <div class="rate-star"  v-for="item in 10" :key="item">
+                                <div v-if="item <= ratingFloored">
+                                    <font-awesome-icon icon="star" class="checked "> </font-awesome-icon>
+                                </div>
+                                <div v-else>
+                                     <font-awesome-icon icon="star" class="gray"> </font-awesome-icon>
+                                </div>
+                                
                               </div>
                         </div>
 
-                        <div class="row">
-                            <div class="overview-col">
-                                <h6>Overview</h6>
-                                <p>{{ movie.overview }}</p>
-                            </div>
+                        <div class="row d-flex justify-content-center">
+                           
+                                <div class="col justify-self-center">
+                                  <h6>Overview</h6>
+                                    <p>{{ movie.overview }}</p>
+                                </div>
+                                
+                              
+                            
                         </div>
 
-                        <div class="row" style="display:flex;">             
-                              <div class=" video " style="justify-self:center;" 
-                                   v-for="video in movie.videos.results" :key="video.id" >
-                                  <div v-if="video.type=='Trailer'">
-                                          <iframe width="400px" height="300px"
+
+                 </div>
+        </div>
+      </section>
+
+
+      <section v-if="loadingError">
+              <p>Sorry Can't Load This Movie</p>
+            </section>
+      <section v-else>
+        <div v-if="loadingMovie">Loading ...</div>
+             <div class="row video-row"  >              
+                    <div class="col video embed-responsive embed-responsive-16by9" style="justify-self:center;"
+                                    >
+                               <div v-for="(video,index) in movieVideos" :key="video.id">
+                                   <div v-if="index==0">
+                                                   <iframe 
+                                           class="embed-responsive-item"
                                           :src="videoPath+video.key"
                                           frameborder="0" 
                                           allow="accelerometer; autoplay; clipboard-write; " 
                                           allowfullscreen></iframe>
                                   </div>
-                              </div>
-                        </div>
-
-                 </div>
-              
-         
-        </div>
+                              </div>    
+                    </div>
+         </div>
       </section>
-
-
-        <section v-if="loadingError">
-        <p>Sorry Can't Load This Movie</p>
-      </section>
-      <section v-else>
-        <div v-if="loadingMovie">Loading ...</div>
-        <div class="row " v-else>
-                    
-          
-        </div>
-      </section>
+                   
 
 
       <section v-if="errorLoadingCast">
         <p>Sorry Can't Load cast</p>
       </section>
-      <section v-else>
+    <section v-else>
         <h6 class="text-left cast-title">Cast</h6>
         <div v-if="loadingCast">
           Loading ...
         </div>
 
-        <div class="row second-row text-left" v-else>
-          <div class="col-12" v-for="item in movieCastCrew.cast" :key="item.id">
-            <span v-if="item.profile_path != undefined">
-              <img
-                class="rounded cast-image"
-                :src="castImagePath + item.profile_path"
-                alt="Cast Image"
-              />
-            </span>
-            <span v-else>
-              <img
-                class="rounded cast-image"
-                src="../imgs/alt.jpg"
-                alt="Cast Image"
-              />
-            </span>
-            <span class="cast-name"> {{ item.name }} </span>
-            <span class="cast-as"> As </span>
-            <span class="cast-role"> {{ item.character }} </span>
-            <hr />
+        <div class="row second-row text-left justify-content-around" v-else>
+          <div class=" col-12 col-sm-6 col-md-3" v-for="(item, index) in movieCastCrew.cast" :key="item.id">
+               <div v-if="index <= 7">
+                  <span v-if="item.profile_path != undefined">
+                    <CastCard  :img="castImagePath+item.profile_path"
+                                :name="item.name"
+                                :roleName="item.character" />
+                  </span>
+                  <span v-else>
+                      <CastCard :img="altImagePath"
+                                :name="item.name"
+                                :roleName="item.character" />
+                  </span>
+              </div> 
           </div>
         </div>
+        <div class="row d-flex justify-content-end full-cast-row">
+           
+                  <div class="fullCast">
+                    <a :href="fullCastLink+this.$route.params.id"> See Full Cast</a>
+                  </div>
+           
+        </div>
       </section>
-
-
 
     </div>
   </div>
@@ -110,6 +121,7 @@
 
 <script>
 import axios from "axios";
+import CastCard from '../components/cards/CastCard';
 
 export default {
   name: "Movie",
@@ -118,9 +130,12 @@ export default {
       apiKey: "83a0145e56d35a45ba5ea0f752806cd2",
       imagePath: "https://image.tmdb.org/t/p/w300",
       castImagePath: "https://image.tmdb.org/t/p/w300",
+      altImagePath:'alt.jpg',
       videoPath: "https://www.youtube.com/embed/",
+      fullCastLink:'https://www.themoviedb.org/movie/',
       movie: [],
       movieCastCrew: [],
+       movieVideos:[],
       loadingError: false,
       loadingMovie: true,
       errorLoadingCast: false,
@@ -148,8 +163,8 @@ export default {
         .get(url)
         .then((response) => {
           this.movie = response.data;
-          this.ratingFloored = Math.round(this.movie.vote_Average);
-          console.log("this is my object"+this.movie.videos.results[0].key);
+          this.ratingFloored = Math.round(this.movie.vote_average);
+          this.movieVideos = this.movie.videos.results;
         })
         .catch((error) => {
           this.loadingError = true;
@@ -179,6 +194,7 @@ export default {
         });
     },
   },
+  components : {CastCard}
 };
 </script>
 
@@ -195,62 +211,110 @@ $color-soft-text: rgb(155, 155, 155);
   .first-row {
     display: flex;
     padding-top: 20px;
-    padding-bottom: 20px;
+   
     .poster-image {
+      margin-bottom: 0;
       width: 100%;
+      height: 90%;
     }
 
     .movie-meta {
       align-self: center;
-    
-      .rating-col {
-        margin-top: 5px;
-        display: inline;
-        .rate-val {
-          display: inline;
-          margin-right: 20px;
-          font-size: 1rem;
-          color: $colo-secondary;
-          .val {
+      .movie-name-row {
+        h1{
+          color: white;
+          
+        }
+      }
+      .rating-row{
+             display: flex;
+                margin-top: 30px;
+
+           .rating-col {
+            margin-top: 5px;
+            padding-left: 15px;
+         
+            display: inline;
+           .rate-val {
+            display: inline;
+            margin-right: 20px;
+            font-size: 1rem;
+            color: $colo-secondary;
+           .val {
             font-size: 16px;
             color: white;
             font-weight: bold;
-            margin-right: 3px;
-          }
-          .out-of {
+            margin-left: 10px;
+                }
+           .out-of {
             font-size: 12px;
             color: white;
             font-weight: bold;
-          }
-        }
+               }
+         }
       }
         .rate-star {
-          display: inline;
-          color: yellow;
+           
+            align-self: center;
+         
+          .checked {
+             color: yellow;
+             align-content: center;
+          }
+          .gray{
+             color: rgb(126, 126, 126);
+          }
         }
-      .overview-col {
-        margin-top: 10px;
+
+      }
+
+      
+        
         h6 {
+          margin-top: 30px;
           color: $colo-secondary;
         }
         p {
           color: white;
           line-height: 2;
           font-size: 14px;
-          width: 60%;
+          width: 100%;
         }
-      }
+      
     }
   }
 
-    .cast-title{
-        font-size: 1rem;
-        color: $colo-secondary;
+  .video-row{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-right: 5%;
+    padding-left: 5%;
+        .video{
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
     }
+    .cast-title{
+        font-size: 24px;
+        color: $colo-secondary;
+        margin-bottom: 20px;
+    }
+
+    .full-cast-row {
+     padding: 20px 0;
+        .fullCast{
+          a{
+            font-size:20px;
+            color: $colo-secondary;
+            padding-right: 10px;
+          }
+        }
+     }
+
 
   .second-row {
     .cast-image {
-      width: 5%;
+      width: 4%;
       height: auto;
     }
 
