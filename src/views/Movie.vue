@@ -8,22 +8,38 @@
       <section v-else>
         <div v-if="loadingMovie">Loading ...</div>
         <div class="row first-row" v-else>
+           
               <div class="col-12   col-lg-4">
-                <img
-                  class="poster-image img-fluid "
-                  :src="imagePath + movie.poster_path"
-                  alt=""
-                />
+                 
+                <div v-if="movie.poster_path != undefined">
+                          <img
+                          class="poster-image img-fluid "
+                          :src="imagePath + movie.poster_path"
+                          alt=""
+                          />
+                </div>
+                <div v-else>
+                       <img
+                          class="poster-image img-fluid "
+                          src="../imgs/alt.jpg"
+                          alt=""
+                          />
+                </div>
+
+               
               </div>
-              <div class="col-12 col-lg-8 text-left movie-meta">
+              <div class="col-12 col-lg-8  movie-meta">
                         <div class="row d-flex justify-content-center movie-name-row">
                           <h1> {{movie.title}}</h1>
                         </div>
 
-                        <div class="row rating-row">
+                          <div class="row d-flex justify-content-center movie-year-row">
+                          <h3> {{movie.release_date.slice(0,4)}}</h3>
+                        </div>
+
+                        <div class="row d-flex justify-content-center rating-row">
                                 <div class="rating-col">
                                       <div  class="rate-val">
-                                            Rating:
                                             <span class="val"> {{ movie.vote_average }} </span>
                                             <span class="out-of">/10</span>
                                       </div>
@@ -40,15 +56,13 @@
                               </div>
                         </div>
 
-                        <div class="row d-flex justify-content-center">
+                        <div class="row d-flex justify-content-center text center overview-row">
                            
                                 <div class="col justify-self-center">
                                   <h6>Overview</h6>
                                     <p>{{ movie.overview }}</p>
                                 </div>
-                                
-                              
-                            
+                                                        
                         </div>
 
 
@@ -63,18 +77,23 @@
       <section v-else>
         <div v-if="loadingMovie">Loading ...</div>
              <div class="row video-row"  >              
-                    <div class="col video embed-responsive embed-responsive-16by9" style="justify-self:center;"
+                    <div  v-if="movieVideos.length != 0"
+                      class="col video embed-responsive embed-responsive-16by9" style="justify-self:center;"
                                     >
-                               <div v-for="(video,index) in movieVideos" :key="video.id">
-                                   <div v-if="index==0">
-                                                   <iframe 
-                                           class="embed-responsive-item"
-                                          :src="videoPath+video.key"
-                                          frameborder="0" 
-                                          allow="accelerometer; autoplay; clipboard-write; " 
-                                          allowfullscreen></iframe>
-                                  </div>
-                              </div>    
+                                    
+                                          <div v-for="(video,index) in movieVideos" :key="video.id">
+                                                <div v-if="index==0">
+                                                    <iframe 
+                                                    class="embed-responsive-item"
+                                                    :src="videoPath+video.key"
+                                                    frameborder="0" 
+                                                    allow="accelerometer; autoplay; clipboard-write; " 
+                                                    allowfullscreen></iframe>
+                                                </div>
+                                           </div>                      
+                    </div>
+                     <div v-else>
+                          <p style="color:white; font-size:14px;">Sorry, No Trailer Available for This movie.</p>
                     </div>
          </div>
       </section>
@@ -91,21 +110,33 @@
         </div>
 
         <div class="row second-row text-left justify-content-around" v-else>
-          <div class=" col-12 col-sm-6 col-md-3" v-for="(item, index) in movieCastCrew.cast" :key="item.id">
-               <div v-if="index <= 7">
-                  <span v-if="item.profile_path != undefined">
-                    <CastCard  :img="castImagePath+item.profile_path"
-                                :name="item.name"
-                                :roleName="item.character" />
-                  </span>
-                  <span v-else>
-                      <CastCard :img="altImagePath"
-                                :name="item.name"
-                                :roleName="item.character" />
-                  </span>
-              </div> 
+              
+          <div  class=" col-12 col-sm-6 col-md-4 col-lg-3"   
+                v-for="(item, index) in movieCastCrew.cast" :key="item.id">
+                 <div v-if="movieCastCrew.cast.length != 0"> 
+                          <div v-if="index <= 7">
+                            <span v-if="item.profile_path != undefined">
+                              <CastCard  :img="castImagePath+item.profile_path"
+                                          :name="item.name"
+                                          :roleName="item.character" />
+                            </span>
+                            <span v-else>
+                                <CastCard :img="altImagePath"
+                                          :name="item.name"
+                                          :roleName="item.character" />
+                            </span>
+                         </div> 
+                 </div>
+                 <div v-else>
+                        <p style="color:white; font-size:14px;">Sorry, No Cast Available for This movie.</p>
+                 </div>
+                  
           </div>
+          
+
         </div>
+<!-- v-if="movieCastCrew.cast.length != 0" -->
+
         <div class="row d-flex justify-content-end full-cast-row">
            
                   <div class="fullCast">
@@ -226,28 +257,40 @@ $color-soft-text: rgb(155, 155, 155);
           
         }
       }
+
+      @media (max-width:992px) {
+         .movie-name-row {
+       margin-top: 20px;
+      }
+      }
+
+      .movie-year-row {
+            margin-top: 10px;
+          h3{
+            color: rgba(212, 0, 255, 0.726);
+            
+          }
+      }
+
+
       .rating-row{
              display: flex;
-                margin-top: 30px;
+                margin-top: 20px;
 
            .rating-col {
-            margin-top: 5px;
-            padding-left: 15px;
-         
-            display: inline;
+            padding-left: 15px;  
            .rate-val {
-            display: inline;
             margin-right: 20px;
             font-size: 1rem;
             color: $colo-secondary;
            .val {
-            font-size: 16px;
+            font-size: 22px;
             color: white;
             font-weight: bold;
             margin-left: 10px;
                 }
            .out-of {
-            font-size: 12px;
+            font-size: 16px;
             color: white;
             font-weight: bold;
                }
@@ -269,19 +312,25 @@ $color-soft-text: rgb(155, 155, 155);
       }
 
       
-        
-        h6 {
-          margin-top: 30px;
+        .overview-row{
+          margin-top: 20px;
+           h6 {
+             font-size: 20px;
           color: $colo-secondary;
-        }
-        p {
+             }
+           p {
           color: white;
           line-height: 2;
-          font-size: 14px;
+          font-size: 18px;
           width: 100%;
+            }
         }
+
+      
       
     }
+
+
   }
 
   .video-row{

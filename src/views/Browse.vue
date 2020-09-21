@@ -5,7 +5,7 @@
         <h3>Filter Movies</h3>
 
         <div class="row">
-            <div class="col-4  col-lg-3" >
+            <div class="col-6 col-md-4  col-lg-3" >
               <select class="custom-select genre-filter" @change="searchByGenre" >
                  <!-- <option value="-" selected>Choose Genre</option> -->
                 <option value="-" disabled selected>Choose Genre</option>
@@ -31,7 +31,7 @@
                 <option value="37">Western</option>
               </select>
             </div>
-          <div class="col-4  col-lg-2">
+          <div class="col-6 col-md-4 col-lg-2">
             <select class="custom-select year-filter" @change="searchByYear">
               <option value="-" selected disabled>Choose Year</option>
               <option  v-for="year in movieYear" :key="year" :value="year" >
@@ -39,7 +39,7 @@
               </option>
             </select>
           </div>
-          <div class="col-4  col-lg-3">
+          <div class="col-12 col-md-4 col-lg-3">
             <select class="custom-select rating-filter" @change="searchByRating">
               <option value="-" selected disabled>Rating</option>
               <option value="1">1+</option>
@@ -54,20 +54,21 @@
               <option value="10">10</option>
             </select>
           </div>
+
+
           <div
             class="col-10 offset-1  col-md-6 offset-md-3 offset-lg-0 col-md-4 col-lg-4"
           >
-            <form   prevent class="form-inline my-2 my-lg-0 myform mt-3 mt-lg-0">
+            <form  @submit.prevent="searchButton"   class="form-inline my-2 my-lg-0 myform mt-3 mt-lg-0">
               <input
                 class="form-control  mr-sm-2 filter-search-input"
                 type="search"
                 placeholder="Movie Name"
                 aria-label="Search"
               />
-              <button @click="searchButton"
+              <button @click.prevent="searchButton"
                 class="btn btn-outline-success my-2 my-sm-0"
-                type="submit">
-                Search
+                type="button"> Search
               </button>
             </form>
           </div>
@@ -81,7 +82,7 @@
           Loading ...
         </div>
 
-        <div class="row" style="margin:0; padding:0;" v-else>
+        <div class="row movie-row" style="margin:0; padding:0;" v-else>
           <div
             class="col-12 col-sm-4 col-md-3 movie-col"
             style="margin:0; padding:0;"
@@ -89,32 +90,37 @@
             :key="movie.id"
 
           >
-            <div class="rating">
-              <span class="top-span">
-                <font-awesome-icon style="color:yellow;" icon="star">
-                </font-awesome-icon>
-                {{ movie.vote_average }}</span
-              ><span style="font-size:15px;">\10</span>
-            </div>
-            <div class="title">
-              <span> {{ movie.title }} </span>
-            </div>
-            <div class="release_date">
-              <span> {{ movie.release_date }} </span>
-            </div>
-            <div v-if="movie.poster_path != undefined" class="movie-img-parent"  style="heigh:100%">
-                 <router-link :to="{path: '/movie/'+movie.id}"> <img class="movie-image img-fluid rounded "
-              style="padding:0; margin:0; width:100%; max-height:100%; "
-              :src="imagePath+movie.poster_path"
-              alt="Image not Found"/>     
+              <div class="rating">
+                <span class="top-span">
+                  <font-awesome-icon style="color:yellow;" icon="star">
+                  </font-awesome-icon>
+                  {{ movie.vote_average }}</span
+                ><span style="font-size:15px;">\10</span>
+              </div>
+              <div class="title">
+                <span> {{ movie.title }} </span>
+              </div>
+              <div class="release_date">
+                <span> {{ movie.release_date }} </span>
+              </div>
+
+            <div v-if="movie.poster_path != undefined" class="movie-img-parent"  style="heigh:100%">  
+                 <router-link :to="{path:'/movie/'+movie.id}"> 
+                        <img class="movie-image img-fluid rounded"
+                        style="padding:0; margin:0; width:100%; max-height:100%;"
+                        :src="imagePath+movie.poster_path"
+                        alt=""/>     
                  </router-link>              
             </div>
+
             <div v-else class="movie-img-parent">
-                <router-link to="/movie"><img class="movie-image img-fluid"
-              style="padding:0; margin:0; width:100%; "
-              src="../imgs/alt.jpg"
-              alt=""/>  </router-link>
-                 
+               
+                  <router-link :to="{path:'/movie/'+movie.id}">
+                          <img class="movie-image img-fluid"
+                          style="padding:0; margin:0; width:100%;"
+                          src="../imgs/alt.jpg"
+                          alt="Image not Found"/> 
+                  </router-link>   
             </div>
            
           </div>
@@ -181,6 +187,7 @@ export default {
       filterApplied:false,
       filterByMovieName:false,
       filterType: [false , false , false ,false],
+      firstLoad:true,
       imagePath: "https://image.tmdb.org/t/p/w300",
       paging: [1, 2, 3],
       currentPage: 1,
@@ -207,9 +214,11 @@ export default {
   created() {},
   mounted() {
 
-    if(!this.filterApplied){  // filter is not applied
+    if(this.firstLoad){  // filter is not applied
       //getting movies from axios
+      this.firstLoad=false;
       this.getMovies();
+      
     }
    
   
@@ -399,16 +408,17 @@ export default {
         });
     },
     searchButton(){
-
-             // shut all the other filters 
+            
+            console.log("insdie button click");
+            // shut all the other filters 
              document.getElementsByClassName("genre-filter")[0].value = "-";
              document.getElementsByClassName("year-filter")[0].value = "-";
              document.getElementsByClassName("rating-filter")[0].value = "-";
              //
+             this.firstLoad = false;
              this.paging[0]= 1 ; 
              this.paging[1]= 2 ;
              this.paging[2]= 3 ; 
-             this.currentPage=1;
 
        this.filterApplied = false;
            
@@ -418,7 +428,8 @@ export default {
 
         if (movieInput != ""){
           movieInput = movieInput.split(" ").join("+");
-              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+"&query="+ movieInput+"&page="+this.currentPage;
+              let url = "https://api.themoviedb.org/3/search/movie?api_key="+this.apiKey+
+              "&query="+ movieInput+"&page=1";
             axios
                 .get(url )
                 .then((response) => {
@@ -602,8 +613,14 @@ $color-soft-text: rgb(155, 155, 155);
   .filter {
     padding-top: 40px;
     margin-bottom: 40px;
+
+    @media (max-width:768px) {
+      .rating-filter{
+          margin-top: 10px;
+      }
+    }
     h3 {
-      font-size: 40px;
+      font-size: 30px;
       color: $colo-secondary;
       font-weight: bold;
       font-family: "Times New Roman", Times, serif;
@@ -623,6 +640,9 @@ $color-soft-text: rgb(155, 155, 155);
     .myform {
       justify-content: flex-end;
     }
+
+
+
   }
 
   .movie-col {
@@ -638,7 +658,8 @@ $color-soft-text: rgb(155, 155, 155);
     }
   }
 
-  .rating {
+  .movie-row{
+      .rating {
     position: absolute;
     left: 20px;
     top: 10px;
@@ -667,6 +688,7 @@ $color-soft-text: rgb(155, 155, 155);
       font-size: 30px;
     }
   }
+
   .release_date {
     position: absolute;
     right: 10px;
@@ -682,6 +704,37 @@ $color-soft-text: rgb(155, 155, 155);
       font-weight: bold;
     }
   }
+
+      @media  (min-width:576px) and (max-width:992px) {
+
+           .rating {
+            padding: 0 10px 0 10px;
+            span {
+              font-size: 17px;
+            }
+             }
+            .title {
+              span {
+                color: $colo-secondary;
+                padding: 10px;
+                font-size: 16px;
+              }
+            }
+
+            .release_date {
+   
+            span {
+              padding: 10px;
+              font-size: 13px;
+            
+            }
+              }
+
+      }   
+
+  }
+  
+
 
 .movie-img-parent{
   overflow: hidden;

@@ -13,19 +13,17 @@
 .header .navbar .top-pages a {
   font-weight: bold;
   color: rgba(212, 0, 255, 0.726);
-  padding: 10px;
   text-decoration: none;
 }
 .header .navbar .top-pages a.router-link-exact-active {
   color: #42b983;
-  background-color: #343a40;
-  border-radius: 40%;
-  border: 2px solid rgba(212, 0, 255, 0.363);
+  background-color: rgba(212, 0, 255, 0.151);
+  padding: 5px;
+  border-radius: 10px;
 }
 .header .navbar ul {
   position: absolute;
-  top: 5;
-  left: 45%;
+  right: 20px;
 }
 .header .navbar ul li {
   border-radius: 40%;
@@ -53,14 +51,14 @@
 .home #carousel-id {
   margin-bottom: 50px;
 }
-.home .carousel-item {
+.home #carousel-id .carousel-item {
   background: no-repeat center center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
 }
-.home .carousel-indicators li {
+.home #carousel-id .carousel-indicators li {
   height: 8px;
   cursor: pointer;
 }
@@ -117,6 +115,11 @@
 }
 @media (max-width: 768px) {
   .home .latest .indicators {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .home .latest {
     display: none;
   }
 }

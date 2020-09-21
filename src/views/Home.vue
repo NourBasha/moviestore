@@ -17,21 +17,21 @@
         <div class="carousel-inner" v-else>
           <div class="carousel-item carousel-one active">
             <img
-              style="width:100%; height:inherit;"
+              style="width:100%;  "
               :src="imagePathOriginal + AdImages[0].poster_path"
               alt=""
             />
           </div>
           <div class="carousel-item carousel-two">
             <img
-              style="width:100%; height:inherit;"
-              :src="imagePathOriginal + AdImages[1].poster_path"
+              style="width:100%;"
+              :src="imagePathOriginal+AdImages[1].poster_path"
               alt=""
             />
           </div>
           <div class="carousel-item carousel-three">
             <img
-              style="width:100%; height:inherit;"
+              style="width:100%; "
               :src="imagePathOriginal + AdImages[2].poster_path"
               alt=""
             />
@@ -83,6 +83,7 @@
                 :title="movie.title"
                 :overview="movie.overview"
                 :rating="movie.vote_average"
+                :id="movie.id"
               />
               <!-- </transition> -->
             </div>
@@ -132,11 +133,13 @@
               <div class="release_date">
                 <span> {{ movie.release_date }} </span>
               </div>
-              <img
+                <router-link :to="{path:'/movie/'+movie.id}">
+                 <img
                 style="padding:0; margin:0; width:100%;"
                 :src="imagePath + movie.poster_path"
-                alt=""
-              />
+                alt="" />
+                  </router-link>
+             
             </div>
           </div>
         </section>
@@ -190,14 +193,9 @@
           >
             <a id="brand-logo" href="#">Movie<span>store</span></a>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Accusamus nobis modi minus ipsum sequi quos nulla. Saepe
-              accusantium voluptatum eos, ipsa iusto, cumque qui dolorem
-              nesciunt sint dolor perferendis quasi. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Cum praesentium illum ullam magnam
-              aspernatur consectetur suscipit sapiente? Fugit iste, voluptatum
-              asperiores esse tenetur ex distinctio explicabo laudantium cumque
-              consequatur voluptas.
+              This website gets its data from themoviedb, we only use it here to showcase 
+              our software development abilities and to practice software development. We hope you enjoy your visit to our
+              website and hopefully you will come back again!
             </p>
           </div>
 

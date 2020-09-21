@@ -8,7 +8,10 @@
       
       <div class="card-body">
         <h5 class="card-title"> {{name}} </h5>
-        <span class="as">  as <p class="card-text role-name" > {{roleName}} </p>  </span> 
+        <div v-if="roleName != '' && roleName != null && roleName != undefined">
+                <span class="as">  as <p class="card-text role-name" > {{roleName}} </p>  </span> 
+        </div>
+      
       </div>
     </div>
   </div>
@@ -37,30 +40,46 @@ $color-dark: #343a40;
 $color-card: #21262c;
 $color-soft-text: rgb(155, 155, 155);
         .card{
+
             margin:0 0 20px ;
             background-color:#21262c;
             border: 1px solid white;
-            .card-body{
-                padding-right: 5px;
-                padding-left: 5px;
-                .myimage{
 
-                height: 350px;
+            .myimage{
+               
                 width: auto;
+              
             }
+
+            .card-body{
+                min-height: 150px;
+                
             .card-title{
                 color: white;
                 margin: 0;
+                font-size: 20px;
+                font-weight: bold;
             }
             .as{
+                display: block;
+                margin-top: 20px;
+                font-size: 12px;
                 color: $colo-secondary;
               
             }
             .role-name{
-                font-size: 12px;
+               display: block;
+                margin-top: 5px;
+                font-size: 14px;
                 color: white;
                   width: 100%;
             }
             }
+        }
+
+        @media (max-width:576px) {
+              .card{
+                padding: 10px;
+              }
         }
 </style>

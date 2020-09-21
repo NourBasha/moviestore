@@ -8,11 +8,17 @@
                    {{rating}}</span><span style="font-size:15px;">\10</span> 
       </div>
       </div>
-      <img  class="myimage" :src="img" alt="" />
+     <router-link :to="{path:'/movie/'+id}"> 
+     <img  class="myimage" :src="img" alt="" />
+     </router-link>
+
       <div class="card-body">
         <h5 class="card-title"> {{title}} </h5>
         <p id="overview-id" class="card-text" > {{overview}} </p>
-        <a href="#" >Read More</a>
+             <router-link :to="{path:'/movie/'+id}"> 
+             Read More
+             </router-link>
+        
       </div>
     </div>
   </div>
@@ -22,7 +28,7 @@
 
 export default {
     name: 'MovieCard',
-    props: ['img','title','overview','rating'],
+    props: ['img','title','overview','rating','id'],
     data(){
       return {
         

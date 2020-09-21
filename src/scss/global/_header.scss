@@ -20,21 +20,21 @@ $colo-secondary: #42b983;
             a {
               font-weight: bold;
               color: $color-main;
-              padding: 10px;
+             
               text-decoration: none;
               &.router-link-exact-active {
                 color: $colo-secondary;
-                background-color: $color-dark;
-                border-radius: 40%;
-                border: 2px solid $color-main-soft;
+                background-color: rgba(212, 0, 255, 0.151);
+               padding: 5px;
+               border-radius: 10px;
               }
             }
           }
         
           ul {
             position: absolute;
-            top: 5;
-            left: 45%;
+        
+            right: 20px;
             li {
               border-radius: 40% ;
               &:hover{
@@ -45,7 +45,6 @@ $colo-secondary: #42b983;
 
           @media (max-width:567px) {
             ul {
-              
                 left: 40%;
               }
           }
@@ -59,19 +58,6 @@ $colo-secondary: #42b983;
             }
           }
         
-          // .search-input {
-          //   border: 2px solid $colo-secondary;
-          //   box-shadow: $colo-secondary;
-          // }
-
-
-          // .search-form {
-          //   // justify-content: flex-end;
-          //   button {
-          //     border: 1px solid$color-main;
-          //     color: $color-main;
-          //   }
-          // }
 
           
     }

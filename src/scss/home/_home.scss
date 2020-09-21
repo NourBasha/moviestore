@@ -11,20 +11,24 @@ $color-soft-text : rgb(155, 155, 155);
 background-color: $color-dark;
     #carousel-id {
          margin-bottom: 50px;
-    }
-    .carousel-item {
-      background: no-repeat center center;
-      background-size: cover;
-      -webkit-background-size: cover ;
-      -moz-background-size: cover ;
-      -o-background-size: cover ;
-    }
 
-    .carousel-indicators li{
-        height: 8px;
-      cursor: pointer;
+         .carousel-item {
+          background: no-repeat center center;
+          background-size: cover;
+          -webkit-background-size: cover ;
+          -moz-background-size: cover ;
+          -o-background-size: cover ;
+        }
+
+        .carousel-indicators li{
+          height: 8px;
+        cursor: pointer;
+      }
+      
     }
     
+
+ 
 // start of latest 
 
     
@@ -97,6 +101,12 @@ background-color: $color-dark;
           }
 
 
+}
+
+@media (max-width:576px) {
+  .latest{
+    display: none;
+  }
 }
 
 // end of latest 
