@@ -8,7 +8,7 @@
             <div class="col-6 col-md-4  col-lg-3" >
               <select class="custom-select genre-filter" @change="searchByGenre" >
                  <!-- <option value="-" selected>Choose Genre</option> -->
-                <option value="-" disabled selected>Choose Genre</option>
+                <option value="-" disabled selected>Genres</option>
                 <option value="0" >All</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
@@ -33,7 +33,7 @@
             </div>
           <div class="col-6 col-md-4 col-lg-2">
             <select class="custom-select year-filter" @change="searchByYear">
-              <option value="-" selected disabled>Choose Year</option>
+              <option value="-" selected disabled>Year</option>
               <option  v-for="year in movieYear" :key="year" :value="year" >
                 {{ year }}
               </option>
