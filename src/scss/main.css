@@ -45,6 +45,84 @@
   color: #42b983;
 }
 
+.movie-card {
+  margin: 0 0 20px;
+  background-color: #21262c;
+}
+.movie-card .rating-container {
+  position: relative;
+}
+.movie-card .rating-container .rating {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #343a40c0;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+}
+.movie-card .rating-container .rating span {
+  color: #42b983;
+  font-size: 25px;
+  padding: 0;
+}
+.movie-card .myimage {
+  height: 420px;
+}
+.movie-card .card-body {
+  padding: 10px 3px 30px 3px;
+  height: 110px;
+}
+.movie-card .card-body a {
+  font-size: 14px;
+}
+.movie-card .card-title {
+  color: white;
+  margin: 0 0;
+}
+.movie-card p {
+  color: white;
+  font-size: 13px;
+  display: inline;
+  padding-bottom: 40px;
+}
+
+.card {
+  margin: 0 0 20px;
+  background-color: #21262c;
+  border: 1px solid white;
+}
+.card .myimage {
+  width: auto;
+}
+.card .card-body {
+  min-height: 150px;
+  border: none;
+}
+.card .card-body .card-title {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.card .card-body .as {
+  display: block;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #42b983;
+}
+.card .card-body .role-name {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+  color: white;
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .card {
+    padding: 10px;
+  }
+}
 .home {
   background-color: #343a40;
 }
@@ -275,6 +353,254 @@
   list-style: none;
   color: #9b9b9b;
   padding: 0;
+}
+
+.browse {
+  width: 100%;
+  background-color: #21262c;
+}
+.browse .filter {
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .browse .filter .rating-filter {
+    margin-top: 10px;
+  }
+}
+.browse .filter h3 {
+  font-size: 30px;
+  color: #42b983;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 30px;
+}
+.browse .filter select {
+  background-color: #343a40;
+  color: #42b983;
+  appearance: menulist;
+}
+.browse .filter select option {
+  color: #42b983;
+  padding: 5px;
+}
+.browse .filter .myform {
+  justify-content: flex-end;
+}
+.browse .movie-col {
+  cursor: pointer;
+}
+.browse .movie-col:hover > .rating {
+  display: block;
+}
+.browse .movie-col:hover > .title {
+  display: block;
+}
+.browse .movie-col:hover > .release_date {
+  display: block;
+}
+.browse .movie-row .rating {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  background-color: #343a40c0;
+  border-radius: 10px;
+  display: none;
+  padding: 0 30px 0 30px;
+}
+.browse .movie-row .rating span {
+  color: #42b983;
+  font-size: 30px;
+  padding: 0;
+}
+.browse .movie-row .title {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+  left: 5px;
+  background-color: #343a40e3;
+  border-radius: 10px;
+  display: none;
+}
+.browse .movie-row .title span {
+  color: #42b983;
+  padding: 20px;
+  font-size: 30px;
+}
+.browse .movie-row .release_date {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #343a40c0;
+  border-radius: 10px;
+  display: none;
+}
+.browse .movie-row .release_date span {
+  color: #42b983;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  font-weight: bold;
+}
+@media (min-width: 576px) and (max-width: 992px) {
+  .browse .movie-row .rating {
+    padding: 0 10px 0 10px;
+  }
+  .browse .movie-row .rating span {
+    font-size: 17px;
+  }
+  .browse .movie-row .title span {
+    color: #42b983;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .browse .movie-row .release_date span {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+.browse .movie-img-parent {
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.browse .paging {
+  margin-top: 30px;
+}
+.browse .paging .muted {
+  pointer-events: none;
+  cursor: default;
+}
+.browse .paging li a {
+  background-color: #21262c;
+}
+
+.movie {
+  background-color: #21262c;
+}
+.movie .first-row {
+  display: flex;
+  padding-top: 20px;
+}
+.movie .first-row .poster-image {
+  margin-bottom: 0;
+  width: 100%;
+  height: 90%;
+}
+.movie .first-row .movie-meta {
+  align-self: center;
+}
+.movie .first-row .movie-meta .movie-name-row h1 {
+  color: white;
+}
+@media (max-width: 992px) {
+  .movie .first-row .movie-meta .movie-name-row {
+    margin-top: 20px;
+  }
+}
+.movie .first-row .movie-meta .movie-year-row {
+  margin-top: 10px;
+}
+.movie .first-row .movie-meta .movie-year-row h3 {
+  color: rgba(212, 0, 255, 0.726);
+}
+.movie .first-row .movie-meta .movie-genre-row span {
+  margin-top: 20px;
+}
+.movie .first-row .movie-meta .movie-genre-row span p {
+  color: white;
+}
+.movie .first-row .movie-meta .rating-row {
+  display: flex;
+  margin-top: 20px;
+}
+.movie .first-row .movie-meta .rating-row .rating-col {
+  padding-left: 15px;
+}
+.movie .first-row .movie-meta .rating-row .rating-col .rate-val {
+  margin-right: 20px;
+  font-size: 1rem;
+  color: #42b983;
+}
+.movie .first-row .movie-meta .rating-row .rating-col .rate-val .val {
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.movie .first-row .movie-meta .rating-row .rating-col .rate-val .out-of {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+}
+.movie .first-row .movie-meta .rating-row .rate-star {
+  align-self: center;
+}
+.movie .first-row .movie-meta .rating-row .rate-star .checked {
+  color: yellow;
+  align-content: center;
+}
+.movie .first-row .movie-meta .rating-row .rate-star .gray {
+  color: #7e7e7e;
+}
+.movie .first-row .movie-meta .overview-row {
+  margin-top: 20px;
+}
+.movie .first-row .movie-meta .overview-row h6 {
+  font-size: 20px;
+  color: #42b983;
+}
+.movie .first-row .movie-meta .overview-row p {
+  color: white;
+  line-height: 2;
+  font-size: 18px;
+  width: 100%;
+}
+.movie .video-row {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.movie .video-row .video {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.movie .cast-title {
+  font-size: 24px;
+  color: #42b983;
+  margin-bottom: 20px;
+}
+.movie .full-cast-row {
+  padding: 20px 0;
+}
+.movie .full-cast-row .fullCast a {
+  font-size: 20px;
+  color: #42b983;
+  padding-right: 10px;
+}
+.movie .second-row .cast-image {
+  width: 4%;
+  height: auto;
+}
+.movie .second-row .cast-name {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0 30px 0 30px;
+}
+.movie .second-row .cast-as {
+  font-size: 14px;
+  color: #42b983;
+}
+.movie .second-row .cast-role {
+  font-size: 18px;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 30px;
 }
 
 body {

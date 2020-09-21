@@ -1,6 +1,6 @@
 <template>
   <div class="cast-card text-center">
-    <div class="card" >
+    <div class="card cast-card" >
     
             <img v-if="img=='alt.jpg'" 
                  class="myimage img-responsive" :src="require(`@/imgs/${img}`)" alt="Image" />
@@ -53,6 +53,7 @@ $color-soft-text: rgb(155, 155, 155);
 
             .card-body{
                 min-height: 150px;
+                border: none;
                 
             .card-title{
                 color: white;
@@ -70,7 +71,7 @@ $color-soft-text: rgb(155, 155, 155);
             .role-name{
                display: block;
                 margin-top: 5px;
-                font-size: 14px;
+                font-size: 18px;
                 color: white;
                   width: 100%;
             }

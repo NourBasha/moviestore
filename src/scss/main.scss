@@ -1,11 +1,20 @@
-@import './global/header';
-@import './home/home';
+
+
 
 $color-main: rgba(212, 0, 255, 0.726);
 $color-main-soft: rgba(212, 0, 255, 0.363);
 $colo-secondary: #42b983;
 $color-dark: #343a40;
 $color-card:#21262c;
+
+
+@import './global/header';
+@import './cards/movieCard';
+@import './cards/castCard';
+@import './home/home';
+@import './browse/browse';
+@import './movie/movie';
+
 
 
 body {

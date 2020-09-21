@@ -1,6 +1,6 @@
 <template>
   <div class="movie-card text-center">
-    <div class="card  " >
+    <div class="card movie-card " >
       <div class="rating-container">
         <div class="rating" > 
                 <span class="top-span">
@@ -46,7 +46,7 @@ $colo-secondary: #42b983;
 $color-dark: #343a40;
 $color-card:#21262c;
 
- .card {
+ .movie-card {
     margin:0 0 20px ;
     background-color:#21262c;
    // display: inline-block;

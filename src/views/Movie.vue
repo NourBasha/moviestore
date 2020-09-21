@@ -37,6 +37,25 @@
                           <h3> {{movie.release_date.slice(0,4)}}</h3>
                         </div>
 
+                         <div class="row d-flex justify-content-center movie-genre-row">
+
+                                <span v-for="(genre,index) in movie.genres" :key="genre.id">
+                                          <div v-if="movie.genres.length == 1"> 
+                                                <p> {{genre.name}}</p>
+                                          </div>
+                                          <div v-else-if=" index ==  movie.genres.length - 1"> 
+                                                 <p> {{genre.name}} </p>
+                                          </div>
+                                          <div v-else>
+                                               <p> {{genre.name}}, </p>
+                                          </div>
+                                      
+                                </span>
+
+                        </div>
+
+                      
+
                         <div class="row d-flex justify-content-center rating-row">
                                 <div class="rating-col">
                                       <div  class="rate-val">
@@ -228,162 +247,3 @@ export default {
   components : {CastCard}
 };
 </script>
-
-<style lang="scss" scoped>
-$color-main: rgba(212, 0, 255, 0.726);
-$color-main-soft: rgba(212, 0, 255, 0.363);
-$colo-secondary: #42b983;
-$color-dark: #343a40;
-$color-card: #21262c;
-$color-soft-text: rgb(155, 155, 155);
-.movie {
-  background-color: $color-card;
-
-  .first-row {
-    display: flex;
-    padding-top: 20px;
-   
-    .poster-image {
-      margin-bottom: 0;
-      width: 100%;
-      height: 90%;
-    }
-
-    .movie-meta {
-      align-self: center;
-      .movie-name-row {
-        h1{
-          color: white;
-          
-        }
-      }
-
-      @media (max-width:992px) {
-         .movie-name-row {
-       margin-top: 20px;
-      }
-      }
-
-      .movie-year-row {
-            margin-top: 10px;
-          h3{
-            color: rgba(212, 0, 255, 0.726);
-            
-          }
-      }
-
-
-      .rating-row{
-             display: flex;
-                margin-top: 20px;
-
-           .rating-col {
-            padding-left: 15px;  
-           .rate-val {
-            margin-right: 20px;
-            font-size: 1rem;
-            color: $colo-secondary;
-           .val {
-            font-size: 22px;
-            color: white;
-            font-weight: bold;
-            margin-left: 10px;
-                }
-           .out-of {
-            font-size: 16px;
-            color: white;
-            font-weight: bold;
-               }
-         }
-      }
-        .rate-star {
-           
-            align-self: center;
-         
-          .checked {
-             color: yellow;
-             align-content: center;
-          }
-          .gray{
-             color: rgb(126, 126, 126);
-          }
-        }
-
-      }
-
-      
-        .overview-row{
-          margin-top: 20px;
-           h6 {
-             font-size: 20px;
-          color: $colo-secondary;
-             }
-           p {
-          color: white;
-          line-height: 2;
-          font-size: 18px;
-          width: 100%;
-            }
-        }
-
-      
-      
-    }
-
-
-  }
-
-  .video-row{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-right: 5%;
-    padding-left: 5%;
-        .video{
-          margin-top: 5px;
-          margin-bottom: 5px;
-        }
-    }
-    .cast-title{
-        font-size: 24px;
-        color: $colo-secondary;
-        margin-bottom: 20px;
-    }
-
-    .full-cast-row {
-     padding: 20px 0;
-        .fullCast{
-          a{
-            font-size:20px;
-            color: $colo-secondary;
-            padding-right: 10px;
-          }
-        }
-     }
-
-
-  .second-row {
-    .cast-image {
-      width: 4%;
-      height: auto;
-    }
-
-    .cast-name {
-        font-size: 18px;
-        color: white;
-        font-weight: bold;
-        font-family: 'Times New Roman', Times, serif;
-        margin: 0 30px 0 30px ;
-    }
-    .cast-as{
-        font-size: 14px;
-        color: $colo-secondary;
-    }
-    .cast-role {
-          font-size: 18px;
-        color: white;
-        font-family: 'Times New Roman', Times, serif;
-        margin-left: 30px;
-    }
-  }
-}
-</style>
