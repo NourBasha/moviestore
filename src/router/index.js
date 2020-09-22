@@ -1,13 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Movie from '../views/Movie.vue'
+import Movie from '../views/Movie.vue';
+import Missing from '../views/Missing.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "*",
+    path: "/",
     name: "Home",
     component: Home
   },
@@ -24,7 +25,10 @@ const routes = [
     path: "/movie/:id",
     name: "Movie",
     component: Movie
-  },
+  },{
+    path: "*",
+    component: Missing
+  }
 ];
 
 const router = new VueRouter({

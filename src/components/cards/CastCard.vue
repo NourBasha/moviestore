@@ -71,7 +71,7 @@ $color-soft-text: rgb(155, 155, 155);
             .role-name{
                display: block;
                 margin-top: 5px;
-                font-size: 18px;
+                font-size: 15px;
                 color: white;
                   width: 100%;
             }

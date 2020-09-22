@@ -47,7 +47,7 @@
                                                  <p> {{genre.name}} </p>
                                           </div>
                                           <div v-else>
-                                               <p> {{genre.name}}, </p>
+                                               <p> {{genre.name}}/ </p>
                                           </div>
                                       
                                 </span>
