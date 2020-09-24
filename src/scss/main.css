@@ -5,12 +5,6 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-.header .navbar .top-pages {
-  display: flex;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  justify-content: end;
-}
 .header .navbar .top-pages a {
   font-weight: bold;
   color: rgba(212, 0, 255, 0.726);
@@ -517,6 +511,11 @@
 }
 .movie .first-row .movie-meta .rating-row .rate-star .gray {
   color: #7e7e7e;
+}
+@media (max-width: 576px) {
+  .movie .first-row .movie-meta .rating-row .val {
+    font-size: 18px;
+  }
 }
 .movie .first-row .movie-meta .overview-row {
   margin-top: 20px;

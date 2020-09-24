@@ -22,9 +22,12 @@
   
         @media (max-width:992px) {
            .movie-name-row {
-         margin-top: 20px;
+              margin-top: 20px;
+             }
+
         }
-        }
+
+
   
         .movie-year-row {
               margin-top: 10px;
@@ -80,6 +83,16 @@
             }
           }
   
+        }
+
+        @media (max-width:576px) {
+          .rating-row{ 
+               
+            .val {
+              font-size: 18px;
+            
+                  }
+           }
         }
   
         

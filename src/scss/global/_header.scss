@@ -1,84 +1,64 @@
 $color-main: rgba(212, 0, 255, 0.726);
 $color-main-soft: rgba(212, 0, 255, 0.363);
 $colo-secondary: #42b983;
- $color-dark: #343a40;
- $color-card:#21262c;
- $color-soft-text : rgb(155, 155, 155);
-
+$color-dark: #343a40;
+$color-card: #21262c;
+$color-soft-text: rgb(155, 155, 155);
 
 .header {
-    .navbar {
-        padding: 5px 5px 3px 5px;
-        .navbar-brand {
-            margin-top: 0;
-            margin-bottom: 0;
-          }
-          .top-pages {
-            display: flex;
-            -ms-flex-direction: row;
-            flex-direction: row;
-            justify-content: end;
-            a {
-              font-weight: bold;
-              color: $color-main;             
-              text-decoration: none;
-              &.router-link-exact-active {
-                color: $colo-secondary;
-                background-color: rgba(212, 0, 255, 0.151);
-               padding: 5px;
-               border-radius: 10px;
-              }
-            }
-            .home-selector{
-              font-weight: bold;
-              color: $color-main;
-              margin-left: 10px;
-             
-              text-decoration: none;
-              &.router-link-exact-active {
-                color: $colo-secondary;
-                background-color: rgba(212, 0, 255, 0.151);
-               padding: 5px;
-               border-radius: 10px;
-              }
-            }
-            .browse-selector{
-              font-weight: bold;
-              color: $color-main;
-              margin-left: 5px;
-             
-              text-decoration: none;
-              &.router-link-exact-active {
-                color: $colo-secondary;
-                background-color: rgba(212, 0, 255, 0.151);
-               padding: 5px;
-               border-radius: 10px;
-              }
-            }
+  .navbar {
+    padding: 5px 5px 3px 5px;
+    .navbar-brand {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .top-pages {
+     
+      a {
+        font-weight: bold;
+        color: $color-main;
+        text-decoration: none;
+        &.router-link-exact-active {
+          color: $colo-secondary;
+          background-color: rgba(212, 0, 255, 0.151);
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
+      .home-selector {
+        font-weight: bold;
+        color: $color-main;
+        margin-left: 10px;
+        text-decoration: none;
+        &.router-link-exact-active {
+          color: $colo-secondary;
+          background-color: rgba(212, 0, 255, 0.151);
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
+      .browse-selector {
+        font-weight: bold;
+        color: $color-main;
+        margin-left: 5px;
 
-
-          }
-        
-       
-
-      
-          #brand-logo {
-            color: $color-main;
-            font-size: 30px;
-            span {
-              font-size: 20px;
-              color: $colo-secondary;
-            }
-          }
-        
-
-          
+        text-decoration: none;
+        &.router-link-exact-active {
+          color: $colo-secondary;
+          background-color: rgba(212, 0, 255, 0.151);
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
     }
 
-   
-    
-   
-    
- 
+    #brand-logo {
+      color: $color-main;
+      font-size: 30px;
+      span {
+        font-size: 20px;
+        color: $colo-secondary;
+      }
+    }
+  }
 }
-
